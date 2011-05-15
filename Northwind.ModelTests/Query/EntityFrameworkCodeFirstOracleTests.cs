@@ -15,5 +15,10 @@ namespace Northwind.ModelTests.Query
         {
             return new NorthwindContext("NorthwindContext.EF.CF.Oracle");
         }
+
+        public override void DisposeContext(NorthwindContext context)
+        {
+            context.Dispose();
+        }
     }
 }

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data.Services.Common;
 using System.Linq;
+using Norm;
 
 namespace Northwind.MongoDB
 {
     [DataServiceKey("OrderID")]
     public class Orders
     {
+        [MongoIdentifier]
         public int OrderID { get; set; }
         public string CustomerID { get; set; }
         public int EmployeeID { get; set; }
@@ -23,7 +25,7 @@ namespace Northwind.MongoDB
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
 
-        public ICollection<OrderDetails> OrderDetails { get; private set; }
+        public List<OrderDetails> OrderDetails { get; private set; }
         public Customers Customer { get; set; }
         public Employees Employee { get; set; }
         public Shippers Shipper { get; set; }

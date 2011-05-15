@@ -12,6 +12,7 @@ namespace Northwind.ModelTests
         internal TContext context;
 
         public abstract TContext CreateContext();
+        public abstract void DisposeContext(TContext context);
         public abstract IQueryable<TCategories> GetCategories();
         public abstract TCategories GetCategory(string categoryName);
         public abstract IQueryable<TProducts> GetCategoryProducts(TCategories category);
@@ -60,6 +61,12 @@ namespace Northwind.ModelTests
         public void SetUp()
         {
             this.context = CreateContext();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            DisposeContext(this.context);
         }
 
         [Test]

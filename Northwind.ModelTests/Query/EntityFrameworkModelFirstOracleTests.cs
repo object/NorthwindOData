@@ -19,6 +19,11 @@ namespace Northwind.ModelTests.Query
             return new NorthwindOracleContext(ConfigurationManager.ConnectionStrings["NorthwindContext.EF.MF.Oracle"].ConnectionString);
         }
 
+        public override void DisposeContext(NorthwindOracleContext context)
+        {
+            context.Dispose();
+        }
+
         public override IQueryable<Categories> GetCategories()
         {
             return context.Categories;

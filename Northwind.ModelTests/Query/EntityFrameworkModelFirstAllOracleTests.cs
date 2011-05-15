@@ -15,5 +15,10 @@ namespace Northwind.ModelTests.Query
         {
             return new NorthwindContext(ConfigurationManager.ConnectionStrings["NorthwindContext.EF.MF.All.Oracle"].ConnectionString);
         }
+
+        public override void DisposeContext(NorthwindContext context)
+        {
+            context.Dispose();
+        }
     }
 }

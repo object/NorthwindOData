@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Services.Common;
 using System.Linq;
+using Norm;
 
 namespace Northwind.MongoDB
 {

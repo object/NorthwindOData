@@ -17,6 +17,11 @@ namespace Northwind.ModelTests.Query
             return new NorthwindMsSqlContext(ConfigurationManager.ConnectionStrings["NorthwindContext.EF.MF.MsSql"].ConnectionString);
         }
 
+        public override void DisposeContext(NorthwindMsSqlContext context)
+        {
+            context.Dispose();
+        }
+
         public override IQueryable<Categories> GetCategories()
         {
             return context.Categories;

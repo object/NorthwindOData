@@ -11,7 +11,7 @@ namespace Northwind.MongoDB
         public string CustomerTypeID { get; set; }
         public string CustomerDesc { get; set; }
 
-        public ICollection<Customers> Customers { get; private set; }
+        public List<Customers> Customers { get; private set; }
 
         public CustomerDemographics()
         {
