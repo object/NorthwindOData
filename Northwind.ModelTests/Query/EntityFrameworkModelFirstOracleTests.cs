@@ -237,7 +237,7 @@ namespace Northwind.ModelTests.Query
         [Test, Explicit]
         public void CopyData()
         {
-            var thisContext = CreateContext();
+            CreateContext();
             var sourceContext = new Northwind.EntityFramework.ModelFirst.MsSql.NorthwindMsSqlContext(ConfigurationManager.ConnectionStrings["NorthwindContext.EF.MF.MsSql"].ConnectionString);
 
             var entityCloner = new EntityCloner(sourceContext, context, 

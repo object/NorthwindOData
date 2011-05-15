@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\EntityFrameworkCodeFirstOracleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.datasvcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\EntityFrameworkModelFirstAllMsSqlService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,6 +111,9 @@
     <ServiceReferenceMetadataStorage Include="Service References\EntityFrameworkCodeFirstMsSqlService\">
       <Type>datasvcmap</Type>
     </ServiceReferenceMetadataStorage>
+    <ServiceReferenceMetadataStorage Include="Service References\EntityFrameworkCodeFirstOracleService\">
+      <Type>datasvcmap</Type>
+    </ServiceReferenceMetadataStorage>
     <ServiceReferenceMetadataStorage Include="Service References\EntityFrameworkModelFirstAllMsSqlService\">
       <Type>datasvcmap</Type>
     </ServiceReferenceMetadataStorage>
@@ -127,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\EntityFrameworkCodeFirstMsSqlService\service.edmx" />
+    <None Include="Service References\EntityFrameworkCodeFirstOracleService\service.edmx" />
     <None Include="Service References\EntityFrameworkModelFirstAllMsSqlService\service.edmx" />
     <None Include="Service References\EntityFrameworkModelFirstAllOracleService\service.edmx" />
     <None Include="Service References\EntityFrameworkModelFirstMsSqlService\service.edmx" />
@@ -172,6 +181,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\EntityFrameworkModelFirstAllOracleService\Reference.datasvcmap">
+      <Generator>DataServiceClientGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EntityFrameworkCodeFirstOracleService\Reference.datasvcmap">
       <Generator>DataServiceClientGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
