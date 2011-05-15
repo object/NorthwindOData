@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NorthwindOracleStoreContainer" CdmEntityContainer="NorthwindContext">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.Categories">
+        <MappingFragment StoreEntitySet="CATEGORIES">
+          <ScalarProperty Name="CategoryID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CATEGORY_NAME" />
+          <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="Picture" ColumnName="PICTURE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.Customers">
+        <MappingFragment StoreEntitySet="CUSTOMERS">
+          <ScalarProperty Name="CustomerID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="CompanyName" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="ContactName" ColumnName="CONTACT_NAME" />
+          <ScalarProperty Name="ContactTitle" ColumnName="CONTACT_TITLE" />
+          <ScalarProperty Name="Address" ColumnName="ADDRESS" />
+          <ScalarProperty Name="City" ColumnName="CITY" />
+          <ScalarProperty Name="Region" ColumnName="REGION" />
+          <ScalarProperty Name="PostalCode" ColumnName="POSTAL_CODE" />
+          <ScalarProperty Name="Country" ColumnName="COUNTRY" />
+          <ScalarProperty Name="Phone" ColumnName="PHONE" />
+          <ScalarProperty Name="Fax" ColumnName="FAX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerDemographics">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.CustomerDemographics">
+        <MappingFragment StoreEntitySet="CUSTOMER_DEMOGRAPHICS">
+          <ScalarProperty Name="CustomerTypeID" ColumnName="CUSTOMER_TYPE_ID" />
+          <ScalarProperty Name="CustomerDesc" ColumnName="CUSTOMER_DESC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Territories">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.Territories">
+        <MappingFragment StoreEntitySet="TERRITORIES">
+          <ScalarProperty Name="TerritoryID" ColumnName="TERRITORY_ID" />
+          <ScalarProperty Name="TerritoryDescription" ColumnName="TERRITORY_DESCRIPTION" />
+          <ScalarProperty Name="RegionID" ColumnName="REGION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.Employees">
+        <MappingFragment StoreEntitySet="EMPLOYEES">
+          <ScalarProperty Name="EmployeeID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="LastName" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FirstName" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="Title" ColumnName="TITLE" />
+          <ScalarProperty Name="TitleOfCourtesy" ColumnName="TITLE_OF_COURTESY" />
+          <ScalarProperty Name="BirthDate" ColumnName="BIRTH_DATE" />
+          <ScalarProperty Name="HireDate" ColumnName="HIRE_DATE" />
+          <ScalarProperty Name="Address" ColumnName="ADDRESS" />
+          <ScalarProperty Name="City" ColumnName="CITY" />
+          <ScalarProperty Name="Region" ColumnName="REGION" />
+          <ScalarProperty Name="PostalCode" ColumnName="POSTAL_CODE" />
+          <ScalarProperty Name="Country" ColumnName="COUNTRY" />
+          <ScalarProperty Name="HomePhone" ColumnName="HOME_PHONE" />
+          <ScalarProperty Name="Extension" ColumnName="EXTENSION" />
+          <ScalarProperty Name="Photo" ColumnName="PHOTO" />
+          <ScalarProperty Name="Notes" ColumnName="NOTES" />
+          <ScalarProperty Name="ReportsTo" ColumnName="REPORTS_TO" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PHOTO_PATH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.Suppliers">
+        <MappingFragment StoreEntitySet="SUPPLIERS">
+          <ScalarProperty Name="SupplierID" ColumnName="SUPPLIER_ID" />
+          <ScalarProperty Name="CompanyName" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="ContactName" ColumnName="CONTACT_NAME" />
+          <ScalarProperty Name="ContactTitle" ColumnName="CONTACT_TITLE" />
+          <ScalarProperty Name="Address" ColumnName="ADDRESS" />
+          <ScalarProperty Name="City" ColumnName="CITY" />
+          <ScalarProperty Name="Region" ColumnName="REGION" />
+          <ScalarProperty Name="PostalCode" ColumnName="POSTAL_CODE" />
+          <ScalarProperty Name="Country" ColumnName="COUNTRY" />
+          <ScalarProperty Name="Phone" ColumnName="PHONE" />
+          <ScalarProperty Name="Fax" ColumnName="FAX" />
+          <ScalarProperty Name="HomePage" ColumnName="HOME_PAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shippers">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.Shippers">
+        <MappingFragment StoreEntitySet="SHIPPERS">
+          <ScalarProperty Name="ShipperID" ColumnName="SHIPPER_ID" />
+          <ScalarProperty Name="CompanyName" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="Phone" ColumnName="PHONE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Regions">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.Regions">
+        <MappingFragment StoreEntitySet="REGIONs">
+          <ScalarProperty Name="RegionID" ColumnName="REGION_ID" />
+          <ScalarProperty Name="RegionDescription" ColumnName="REGION_DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.Products">
+        <MappingFragment StoreEntitySet="PRODUCTS">
+          <ScalarProperty Name="ProductID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="ProductName" ColumnName="PRODUCT_NAME" />
+          <ScalarProperty Name="SupplierID" ColumnName="SUPPLIER_ID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="QuantityPerUnit" ColumnName="QUANTITY_PER_UNIT" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UNIT_PRICE" />
+          <ScalarProperty Name="UnitsInStock" ColumnName="UNITS_IN_STOCK" />
+          <ScalarProperty Name="UnitsOnOrder" ColumnName="UNITS_ON_ORDER" />
+          <ScalarProperty Name="ReorderLevel" ColumnName="REORDER_LEVEL" />
+          <ScalarProperty Name="Discontinued" ColumnName="DISCONTINUED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.OrderDetails">
+        <MappingFragment StoreEntitySet="ORDER_DETAILS">
+          <ScalarProperty Name="OrderID" ColumnName="ORDER_ID" />
+          <ScalarProperty Name="ProductID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UNIT_PRICE" />
+          <ScalarProperty Name="Quantity" ColumnName="QUANTITY" />
+          <ScalarProperty Name="Discount" ColumnName="DISCOUNT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="Northwind.EntityFramework.ModelFirst.Orders">
+        <MappingFragment StoreEntitySet="ORDERS">
+          <ScalarProperty Name="OrderID" ColumnName="ORDER_ID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="OrderDate" ColumnName="ORDER_DATE" />
+          <ScalarProperty Name="RequiredDate" ColumnName="REQUIRED_DATE" />
+          <ScalarProperty Name="ShippedDate" ColumnName="SHIPPED_DATE" />
+          <ScalarProperty Name="ShipVia" ColumnName="SHIP_VIA" />
+          <ScalarProperty Name="Freight" ColumnName="FREIGHT" />
+          <ScalarProperty Name="ShipName" ColumnName="SHIP_NAME" />
+          <ScalarProperty Name="ShipAddress" ColumnName="SHIP_ADDRESS" />
+          <ScalarProperty Name="ShipCity" ColumnName="SHIP_CITY" />
+          <ScalarProperty Name="ShipRegion" ColumnName="SHIP_REGION" />
+          <ScalarProperty Name="ShipPostalCode" ColumnName="SHIP_POSTAL_CODE" />
+          <ScalarProperty Name="ShipCountry" ColumnName="SHIP_COUNTRY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CustomerCustomerDemo" TypeName="Northwind.EntityFramework.ModelFirst.CustomerCustomerDemo" StoreEntitySet="CUSTOMER_CUSTOMER_DEMO">
+      <EndProperty Name="CustomerDemographics">
+        <ScalarProperty Name="CustomerTypeID" ColumnName="CUSTOMER_TYPE_ID" />
+      </EndProperty>
+      <EndProperty Name="Customers">
+        <ScalarProperty Name="CustomerID" ColumnName="CUSTOMER_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmployeeTerritories" TypeName="Northwind.EntityFramework.ModelFirst.EmployeeTerritories" StoreEntitySet="EMPLOYEE_TERRITORIES">
+      <EndProperty Name="Employees">
+        <ScalarProperty Name="EmployeeID" ColumnName="EMPLOYEE_ID" />
+      </EndProperty>
+      <EndProperty Name="Territories">
+        <ScalarProperty Name="TerritoryID" ColumnName="TERRITORY_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

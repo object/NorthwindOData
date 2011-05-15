@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ECE470FB-5707-4CF7-AF81-B07A01E43EF8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Northwind.Service</RootNamespace>
+    <AssemblyName>Northwind.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.1.1\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Microsoft ADO.NET Entity Framework 4.1\Binaries\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.3.1.0.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EntityFrameworkCodeFirstMsSql.svc" />
+    <Content Include="EntityFrameworkCodeFirstOracle.svc" />
+    <Content Include="EntityFrameworkModelFirstAllMsSql.svc" />
+    <Content Include="EntityFrameworkModelFirstMsSql.svc" />
+    <Content Include="EntityFrameworkModelFirstAllOracle.svc" />
+    <Content Include="EntityFrameworkModelFirstOracle.svc" />
+    <Content Include="InMemory.svc" />
+    <Content Include="NHibernateMsSql.svc" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityFrameworkCodeFirstMsSql.svc.cs">
+      <DependentUpon>EntityFrameworkCodeFirstMsSql.svc</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFrameworkCodeFirstOracle.svc.cs">
+      <DependentUpon>EntityFrameworkCodeFirstOracle.svc</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFrameworkModelFirstAllMsSql.svc.cs">
+      <DependentUpon>EntityFrameworkModelFirstAllMsSql.svc</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFrameworkModelFirstMsSql.svc.cs">
+      <DependentUpon>EntityFrameworkModelFirstMsSql.svc</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFrameworkModelFirstAllOracle.svc.cs">
+      <DependentUpon>EntityFrameworkModelFirstAllOracle.svc</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFrameworkModelFirstOracle.svc.cs">
+      <DependentUpon>EntityFrameworkModelFirstOracle.svc</DependentUpon>
+    </Compile>
+    <Compile Include="InMemory.svc.cs">
+      <DependentUpon>InMemory.svc</DependentUpon>
+    </Compile>
+    <Compile Include="NHibernateMsSql.svc.cs">
+      <DependentUpon>NHibernateMsSql.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Northwind.EntityFramework.CodeFirst.Entities\Northwind.EntityFramework.CodeFirst.Entities.csproj">
+      <Project>{369FC2FF-B783-436E-B860-1FC4FD6A0908}</Project>
+      <Name>Northwind.EntityFramework.CodeFirst.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.EntityFramework.CodeFirst.MsSql\Northwind.EntityFramework.CodeFirst.MsSql.csproj">
+      <Project>{0CFBE6EB-DFA0-416C-8484-16CC7BF42F61}</Project>
+      <Name>Northwind.EntityFramework.CodeFirst.MsSql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.EntityFramework.CodeFirst.Oracle\Northwind.EntityFramework.CodeFirst.Oracle.csproj">
+      <Project>{A2E56718-3D0F-41A6-AD16-FDABAFE35124}</Project>
+      <Name>Northwind.EntityFramework.CodeFirst.Oracle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.EntityFramework.ModelFirst.All\Northwind.EntityFramework.ModelFirst.All.csproj">
+      <Project>{9F56D3C2-4085-4D85-B363-D30D0122038B}</Project>
+      <Name>Northwind.EntityFramework.ModelFirst.All</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.EntityFramework.ModelFirst.MsSql\Northwind.EntityFramework.ModelFirst.MsSql.csproj">
+      <Project>{1CD02985-B811-48BD-B740-FDE33DD13CE9}</Project>
+      <Name>Northwind.EntityFramework.ModelFirst.MsSql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.EntityFramework.ModelFirst.Oracle\Northwind.EntityFramework.ModelFirst.Oracle.csproj">
+      <Project>{F36483F1-C9FD-4DC0-822F-172FBFFEBE03}</Project>
+      <Name>Northwind.EntityFramework.ModelFirst.Oracle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.InMemory\Northwind.InMemory.csproj">
+      <Project>{2A909E4D-6493-4D36-9FDE-786B89F9A387}</Project>
+      <Name>Northwind.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.NHibernate.MsSql\Northwind.NHibernate.MsSql.csproj">
+      <Project>{1B1A12B5-4376-4EAC-B1C0-C65753A6F146}</Project>
+      <Name>Northwind.NHibernate.MsSql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>50555</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <EnableWcfTestClientForSVCDefaultValue>True</EnableWcfTestClientForSVCDefaultValue>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

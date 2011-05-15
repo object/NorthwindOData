@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Schema Namespace="Northwind.EntityFramework.ModelFirst.Oracle.Store" Alias="Self" Provider="Devart.Data.Oracle" ProviderManifestToken="Ora11g" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0">
+  <EntityContainer Name="NorthwindOracleStoreContainer">
+    <EntitySet Name="CATEGORIES" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.CATEGORIES" store:Type="Tables" Schema="VAGIF" Table="CATEGORIES" />
+    <EntitySet Name="CUSTOMERS" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.CUSTOMERS" store:Type="Tables" Schema="VAGIF" Table="CUSTOMERS" />
+    <EntitySet Name="CUSTOMER_DEMOGRAPHICS" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.CUSTOMER_DEMOGRAPHICS" store:Type="Tables" Schema="VAGIF" Table="CUSTOMER_DEMOGRAPHICS" />
+    <EntitySet Name="CUSTOMER_CUSTOMER_DEMO" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.CUSTOMER_CUSTOMER_DEMO" store:Type="Tables" Schema="VAGIF" Table="CUSTOMER_CUSTOMER_DEMO" />
+    <EntitySet Name="TERRITORIES" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.TERRITORIES" store:Type="Tables" Schema="VAGIF" Table="TERRITORIES" />
+    <EntitySet Name="EMPLOYEE_TERRITORIES" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.EMPLOYEE_TERRITORIES" store:Type="Tables" Schema="VAGIF" Table="EMPLOYEE_TERRITORIES" />
+    <EntitySet Name="EMPLOYEES" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.EMPLOYEES" store:Type="Tables" Schema="VAGIF" Table="EMPLOYEES" />
+    <EntitySet Name="SUPPLIERS" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.SUPPLIERS" store:Type="Tables" Schema="VAGIF" Table="SUPPLIERS" />
+    <EntitySet Name="SHIPPERS" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.SHIPPERS" store:Type="Tables" Schema="VAGIF" Table="SHIPPERS" />
+    <EntitySet Name="REGIONs" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.REGION" store:Type="Tables" Schema="VAGIF" Table="REGION" />
+    <EntitySet Name="PRODUCTS" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.PRODUCTS" store:Type="Tables" Schema="VAGIF" Table="PRODUCTS" />
+    <EntitySet Name="ORDER_DETAILS" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.ORDER_DETAILS" store:Type="Tables" Schema="VAGIF" Table="ORDER_DETAILS" />
+    <EntitySet Name="ORDERS" EntityType="Northwind.EntityFramework.ModelFirst.Oracle.Store.ORDERS" store:Type="Tables" Schema="VAGIF" Table="ORDERS" />
+    <AssociationSet Name="FK_CUSTOMER_CUSTOMER_DEMO1" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_CUSTOMER_CUSTOMER_DEMO1">
+      <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+      <End Role="CUSTOMER_CUSTOMER_DEMO" EntitySet="CUSTOMER_CUSTOMER_DEMO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUSTOMER_CUSTOMER_DEMO2" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_CUSTOMER_CUSTOMER_DEMO2">
+      <End Role="CUSTOMER_DEMOGRAPHICS" EntitySet="CUSTOMER_DEMOGRAPHICS" />
+      <End Role="CUSTOMER_CUSTOMER_DEMO" EntitySet="CUSTOMER_CUSTOMER_DEMO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_TERRITORIES1" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_EMPLOYEE_TERRITORIES1">
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+      <End Role="EMPLOYEE_TERRITORIES" EntitySet="EMPLOYEE_TERRITORIES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_TERRITORIES2" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_EMPLOYEE_TERRITORIES2">
+      <End Role="TERRITORIES" EntitySet="TERRITORIES" />
+      <End Role="EMPLOYEE_TERRITORIES" EntitySet="EMPLOYEE_TERRITORIES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTS2" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_PRODUCTS2">
+      <End Role="CATEGORIES" EntitySet="CATEGORIES" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTS1" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_PRODUCTS1">
+      <End Role="SUPPLIERS" EntitySet="SUPPLIERS" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_DETAILS2" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_ORDER_DETAILS2">
+      <End Role="ORDERS" EntitySet="ORDERS" />
+      <End Role="ORDER_DETAILS" EntitySet="ORDER_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_DETAILS1" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_ORDER_DETAILS1">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="ORDER_DETAILS" EntitySet="ORDER_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDERS1" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_ORDERS1">
+      <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+      <End Role="ORDERS" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDERS2" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_ORDERS2">
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+      <End Role="ORDERS" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDERS3" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_ORDERS3">
+      <End Role="SHIPPERS" EntitySet="SHIPPERS" />
+      <End Role="ORDERS" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TERRITORIES1" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_TERRITORIES1">
+      <End Role="REGION" EntitySet="REGIONs" />
+      <End Role="TERRITORIES" EntitySet="TERRITORIES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEES1" Association="Northwind.EntityFramework.ModelFirst.Oracle.Store.FK_EMPLOYEES1">
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+      <End Role="EMPLOYEES1" EntitySet="EMPLOYEES" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CATEGORIES">
+    <Key>
+      <PropertyRef Name="CATEGORY_ID" />
+    </Key>
+    <Property Name="CATEGORY_ID" Type="int" Nullable="false" />
+    <Property Name="CATEGORY_NAME" Type="NVARCHAR2" Nullable="false" MaxLength="15" />
+    <Property Name="DESCRIPTION" Type="NCLOB" />
+    <Property Name="PICTURE" Type="BLOB" />
+  </EntityType>
+  <EntityType Name="CUSTOMERS">
+    <Key>
+      <PropertyRef Name="CUSTOMER_ID" />
+    </Key>
+    <Property Name="CUSTOMER_ID" Type="NCHAR" Nullable="false" MaxLength="5" />
+    <Property Name="COMPANY_NAME" Type="NVARCHAR2" Nullable="false" MaxLength="40" />
+    <Property Name="CONTACT_NAME" Type="NVARCHAR2" MaxLength="30" />
+    <Property Name="CONTACT_TITLE" Type="NVARCHAR2" MaxLength="30" />
+    <Property Name="ADDRESS" Type="NVARCHAR2" MaxLength="60" />
+    <Property Name="CITY" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="REGION" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="POSTAL_CODE" Type="NVARCHAR2" MaxLength="10" />
+    <Property Name="COUNTRY" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="PHONE" Type="NVARCHAR2" MaxLength="24" />
+    <Property Name="FAX" Type="NVARCHAR2" MaxLength="24" />
+  </EntityType>
+  <EntityType Name="CUSTOMER_DEMOGRAPHICS">
+    <Key>
+      <PropertyRef Name="CUSTOMER_TYPE_ID" />
+    </Key>
+    <Property Name="CUSTOMER_TYPE_ID" Type="NCHAR" Nullable="false" MaxLength="10" />
+    <Property Name="CUSTOMER_DESC" Type="NCLOB" />
+  </EntityType>
+  <EntityType Name="CUSTOMER_CUSTOMER_DEMO">
+    <Key>
+      <PropertyRef Name="CUSTOMER_ID" />
+      <PropertyRef Name="CUSTOMER_TYPE_ID" />
+    </Key>
+    <Property Name="CUSTOMER_ID" Type="NCHAR" Nullable="false" MaxLength="5" />
+    <Property Name="CUSTOMER_TYPE_ID" Type="NCHAR" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="TERRITORIES">
+    <Key>
+      <PropertyRef Name="TERRITORY_ID" />
+    </Key>
+    <Property Name="TERRITORY_ID" Type="NVARCHAR2" Nullable="false" MaxLength="20" />
+    <Property Name="TERRITORY_DESCRIPTION" Type="NCHAR" Nullable="false" MaxLength="50" />
+    <Property Name="REGION_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_TERRITORIES">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+      <PropertyRef Name="TERRITORY_ID" />
+    </Key>
+    <Property Name="EMPLOYEE_ID" Type="int" Nullable="false" />
+    <Property Name="TERRITORY_ID" Type="NVARCHAR2" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="EMPLOYEES">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Name="EMPLOYEE_ID" Type="int" Nullable="false" />
+    <Property Name="LAST_NAME" Type="NVARCHAR2" Nullable="false" MaxLength="20" />
+    <Property Name="FIRST_NAME" Type="NVARCHAR2" Nullable="false" MaxLength="10" />
+    <Property Name="TITLE" Type="NVARCHAR2" MaxLength="30" />
+    <Property Name="TITLE_OF_COURTESY" Type="NVARCHAR2" MaxLength="25" />
+    <Property Name="BIRTH_DATE" Type="DATE" />
+    <Property Name="HIRE_DATE" Type="DATE" />
+    <Property Name="ADDRESS" Type="NVARCHAR2" MaxLength="60" />
+    <Property Name="CITY" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="REGION" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="POSTAL_CODE" Type="NVARCHAR2" MaxLength="10" />
+    <Property Name="COUNTRY" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="HOME_PHONE" Type="NVARCHAR2" MaxLength="24" />
+    <Property Name="EXTENSION" Type="NVARCHAR2" MaxLength="4" />
+    <Property Name="PHOTO" Type="BLOB" />
+    <Property Name="NOTES" Type="NCLOB" />
+    <Property Name="REPORTS_TO" Type="int" />
+    <Property Name="PHOTO_PATH" Type="NVARCHAR2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="SUPPLIERS">
+    <Key>
+      <PropertyRef Name="SUPPLIER_ID" />
+    </Key>
+    <Property Name="SUPPLIER_ID" Type="int" Nullable="false" />
+    <Property Name="COMPANY_NAME" Type="NVARCHAR2" Nullable="false" MaxLength="40" />
+    <Property Name="CONTACT_NAME" Type="NVARCHAR2" MaxLength="30" />
+    <Property Name="CONTACT_TITLE" Type="NVARCHAR2" MaxLength="30" />
+    <Property Name="ADDRESS" Type="NVARCHAR2" MaxLength="60" />
+    <Property Name="CITY" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="REGION" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="POSTAL_CODE" Type="NVARCHAR2" MaxLength="10" />
+    <Property Name="COUNTRY" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="PHONE" Type="NVARCHAR2" MaxLength="24" />
+    <Property Name="FAX" Type="NVARCHAR2" MaxLength="24" />
+    <Property Name="HOME_PAGE" Type="NCLOB" />
+  </EntityType>
+  <EntityType Name="SHIPPERS">
+    <Key>
+      <PropertyRef Name="SHIPPER_ID" />
+    </Key>
+    <Property Name="SHIPPER_ID" Type="int" Nullable="false" />
+    <Property Name="COMPANY_NAME" Type="NVARCHAR2" MaxLength="40" />
+    <Property Name="PHONE" Type="NVARCHAR2" MaxLength="24" />
+  </EntityType>
+  <EntityType Name="REGION">
+    <Key>
+      <PropertyRef Name="REGION_ID" />
+    </Key>
+    <Property Name="REGION_ID" Type="int" Nullable="false" />
+    <Property Name="REGION_DESCRIPTION" Type="NCHAR" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PRODUCTS">
+    <Key>
+      <PropertyRef Name="PRODUCT_ID" />
+    </Key>
+    <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+    <Property Name="PRODUCT_NAME" Type="NVARCHAR2" Nullable="false" MaxLength="40" />
+    <Property Name="SUPPLIER_ID" Type="int" />
+    <Property Name="CATEGORY_ID" Type="int" />
+    <Property Name="QUANTITY_PER_UNIT" Type="NVARCHAR2" MaxLength="20" />
+    <Property Name="UNIT_PRICE" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="UNITS_IN_STOCK" Type="int" />
+    <Property Name="UNITS_ON_ORDER" Type="int" />
+    <Property Name="REORDER_LEVEL" Type="int" />
+    <Property Name="DISCONTINUED" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDER_DETAILS">
+    <Key>
+      <PropertyRef Name="ORDER_ID" />
+      <PropertyRef Name="PRODUCT_ID" />
+    </Key>
+    <Property Name="ORDER_ID" Type="int" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+    <Property Name="UNIT_PRICE" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="QUANTITY" Type="int" Nullable="false" />
+    <Property Name="DISCOUNT" Type="single" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDERS">
+    <Key>
+      <PropertyRef Name="ORDER_ID" />
+    </Key>
+    <Property Name="ORDER_ID" Type="int" Nullable="false" />
+    <Property Name="CUSTOMER_ID" Type="NCHAR" MaxLength="5" />
+    <Property Name="EMPLOYEE_ID" Type="int" />
+    <Property Name="ORDER_DATE" Type="DATE" />
+    <Property Name="REQUIRED_DATE" Type="DATE" />
+    <Property Name="SHIPPED_DATE" Type="DATE" />
+    <Property Name="SHIP_VIA" Type="int" />
+    <Property Name="FREIGHT" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="SHIP_NAME" Type="NVARCHAR2" MaxLength="40" />
+    <Property Name="SHIP_ADDRESS" Type="NVARCHAR2" MaxLength="60" />
+    <Property Name="SHIP_CITY" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="SHIP_REGION" Type="NVARCHAR2" MaxLength="15" />
+    <Property Name="SHIP_POSTAL_CODE" Type="NVARCHAR2" MaxLength="10" />
+    <Property Name="SHIP_COUNTRY" Type="NVARCHAR2" MaxLength="15" />
+  </EntityType>
+  <Association Name="FK_CUSTOMER_CUSTOMER_DEMO1">
+    <End Role="CUSTOMERS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.CUSTOMERS" Multiplicity="1" />
+    <End Role="CUSTOMER_CUSTOMER_DEMO" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.CUSTOMER_CUSTOMER_DEMO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMERS">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Principal>
+      <Dependent Role="CUSTOMER_CUSTOMER_DEMO">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUSTOMER_CUSTOMER_DEMO2">
+    <End Role="CUSTOMER_DEMOGRAPHICS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.CUSTOMER_DEMOGRAPHICS" Multiplicity="1" />
+    <End Role="CUSTOMER_CUSTOMER_DEMO" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.CUSTOMER_CUSTOMER_DEMO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER_DEMOGRAPHICS">
+        <PropertyRef Name="CUSTOMER_TYPE_ID" />
+      </Principal>
+      <Dependent Role="CUSTOMER_CUSTOMER_DEMO">
+        <PropertyRef Name="CUSTOMER_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_TERRITORIES1">
+    <End Role="EMPLOYEES" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.EMPLOYEES" Multiplicity="1" />
+    <End Role="EMPLOYEE_TERRITORIES" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.EMPLOYEE_TERRITORIES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEES">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_TERRITORIES">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_TERRITORIES2">
+    <End Role="TERRITORIES" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.TERRITORIES" Multiplicity="1" />
+    <End Role="EMPLOYEE_TERRITORIES" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.EMPLOYEE_TERRITORIES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TERRITORIES">
+        <PropertyRef Name="TERRITORY_ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_TERRITORIES">
+        <PropertyRef Name="TERRITORY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTS2">
+    <End Role="CATEGORIES" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.CATEGORIES" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIES">
+        <PropertyRef Name="CATEGORY_ID" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="CATEGORY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTS1">
+    <End Role="SUPPLIERS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.SUPPLIERS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUPPLIERS">
+        <PropertyRef Name="SUPPLIER_ID" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="SUPPLIER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_DETAILS2">
+    <End Role="ORDERS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.ORDERS" Multiplicity="1" />
+    <End Role="ORDER_DETAILS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.ORDER_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDERS">
+        <PropertyRef Name="ORDER_ID" />
+      </Principal>
+      <Dependent Role="ORDER_DETAILS">
+        <PropertyRef Name="ORDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_DETAILS1">
+    <End Role="PRODUCTS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.PRODUCTS" Multiplicity="1" />
+    <End Role="ORDER_DETAILS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.ORDER_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Principal>
+      <Dependent Role="ORDER_DETAILS">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDERS1">
+    <End Role="CUSTOMERS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.CUSTOMERS" Multiplicity="0..1" />
+    <End Role="ORDERS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.ORDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMERS">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Principal>
+      <Dependent Role="ORDERS">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDERS2">
+    <End Role="EMPLOYEES" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.EMPLOYEES" Multiplicity="0..1" />
+    <End Role="ORDERS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.ORDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEES">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Principal>
+      <Dependent Role="ORDERS">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDERS3">
+    <End Role="SHIPPERS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.SHIPPERS" Multiplicity="0..1" />
+    <End Role="ORDERS" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.ORDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SHIPPERS">
+        <PropertyRef Name="SHIPPER_ID" />
+      </Principal>
+      <Dependent Role="ORDERS">
+        <PropertyRef Name="SHIP_VIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TERRITORIES1">
+    <End Role="REGION" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.REGION" Multiplicity="1" />
+    <End Role="TERRITORIES" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.TERRITORIES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGION">
+        <PropertyRef Name="REGION_ID" />
+      </Principal>
+      <Dependent Role="TERRITORIES">
+        <PropertyRef Name="REGION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEES1">
+    <End Role="EMPLOYEES" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.EMPLOYEES" Multiplicity="0..1" />
+    <End Role="EMPLOYEES1" Type="Northwind.EntityFramework.ModelFirst.Oracle.Store.EMPLOYEES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEES">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEES1">
+        <PropertyRef Name="REPORTS_TO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

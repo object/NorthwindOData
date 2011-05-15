@@ -1,0 +1,357 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+    <Schema Namespace="Northwind.NHibernate.MsSql" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <EntityType Name="Categories">
+        <Key>
+          <PropertyRef Name="CategoryID" />
+        </Key>
+        <Property Name="CategoryID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CategoryName" Type="Edm.String" Nullable="true" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" />
+        <Property Name="Picture" Type="Edm.Binary" Nullable="true" />
+        <NavigationProperty Name="Products" Relationship="Northwind.NHibernate.MsSql.Categories_Products" FromRole="Categories" ToRole="Products" />
+      </EntityType>
+      <EntityType Name="Customers">
+        <Key>
+          <PropertyRef Name="CustomerID" />
+        </Key>
+        <Property Name="CustomerID" Type="Edm.String" Nullable="false" />
+        <Property Name="CompanyName" Type="Edm.String" Nullable="true" />
+        <Property Name="ContactName" Type="Edm.String" Nullable="true" />
+        <Property Name="ContactTitle" Type="Edm.String" Nullable="true" />
+        <Property Name="Address" Type="Edm.String" Nullable="true" />
+        <Property Name="City" Type="Edm.String" Nullable="true" />
+        <Property Name="Region" Type="Edm.String" Nullable="true" />
+        <Property Name="PostalCode" Type="Edm.String" Nullable="true" />
+        <Property Name="Country" Type="Edm.String" Nullable="true" />
+        <Property Name="Phone" Type="Edm.String" Nullable="true" />
+        <Property Name="Fax" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="Orders" Relationship="Northwind.NHibernate.MsSql.Customers_Orders" FromRole="Customers" ToRole="Orders" />
+        <NavigationProperty Name="CustomerDemographics" Relationship="Northwind.NHibernate.MsSql.Customers_CustomerDemographics" FromRole="Customers" ToRole="CustomerDemographics" />
+      </EntityType>
+      <EntityType Name="CustomerDemographics">
+        <Key>
+          <PropertyRef Name="CustomerTypeID" />
+        </Key>
+        <Property Name="CustomerTypeID" Type="Edm.String" Nullable="false" />
+        <Property Name="CustomerDesc" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="Customers" Relationship="Northwind.NHibernate.MsSql.CustomerDemographics_Customers" FromRole="CustomerDemographics" ToRole="Customers" />
+      </EntityType>
+      <EntityType Name="Employees">
+        <Key>
+          <PropertyRef Name="EmployeeID" />
+        </Key>
+        <Property Name="EmployeeID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="LastName" Type="Edm.String" Nullable="true" />
+        <Property Name="FirstName" Type="Edm.String" Nullable="true" />
+        <Property Name="Title" Type="Edm.String" Nullable="true" />
+        <Property Name="TitleOfCourtesy" Type="Edm.String" Nullable="true" />
+        <Property Name="BirthDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="HireDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="Address" Type="Edm.String" Nullable="true" />
+        <Property Name="City" Type="Edm.String" Nullable="true" />
+        <Property Name="Region" Type="Edm.String" Nullable="true" />
+        <Property Name="PostalCode" Type="Edm.String" Nullable="true" />
+        <Property Name="Country" Type="Edm.String" Nullable="true" />
+        <Property Name="HomePhone" Type="Edm.String" Nullable="true" />
+        <Property Name="Extension" Type="Edm.String" Nullable="true" />
+        <Property Name="Photo" Type="Edm.Binary" Nullable="true" />
+        <Property Name="Notes" Type="Edm.String" Nullable="true" />
+        <Property Name="ReportsTo" Type="Edm.Int32" Nullable="true" />
+        <Property Name="PhotoPath" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="Superior" Relationship="Northwind.NHibernate.MsSql.Employees_Superior" FromRole="Employees" ToRole="Superior" />
+        <NavigationProperty Name="Subordinates" Relationship="Northwind.NHibernate.MsSql.Employees_Subordinates" FromRole="Employees" ToRole="Subordinates" />
+        <NavigationProperty Name="Orders" Relationship="Northwind.NHibernate.MsSql.Employees_Orders" FromRole="Employees" ToRole="Orders" />
+        <NavigationProperty Name="Territories" Relationship="Northwind.NHibernate.MsSql.Employees_Territories" FromRole="Employees" ToRole="Territories" />
+      </EntityType>
+      <EntityType Name="Orders">
+        <Key>
+          <PropertyRef Name="OrderID" />
+        </Key>
+        <Property Name="OrderID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CustomerID" Type="Edm.String" Nullable="true" />
+        <Property Name="EmployeeID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="OrderDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="RequiredDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="ShippedDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="ShipVia" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Freight" Type="Edm.Decimal" Nullable="true" />
+        <Property Name="ShipName" Type="Edm.String" Nullable="true" />
+        <Property Name="ShipAddress" Type="Edm.String" Nullable="true" />
+        <Property Name="ShipCity" Type="Edm.String" Nullable="true" />
+        <Property Name="ShipRegion" Type="Edm.String" Nullable="true" />
+        <Property Name="ShipPostalCode" Type="Edm.String" Nullable="true" />
+        <Property Name="ShipCountry" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="OrderDetails" Relationship="Northwind.NHibernate.MsSql.Orders_OrderDetails" FromRole="Orders" ToRole="OrderDetails" />
+        <NavigationProperty Name="Customer" Relationship="Northwind.NHibernate.MsSql.Orders_Customer" FromRole="Orders" ToRole="Customer" />
+        <NavigationProperty Name="Employee" Relationship="Northwind.NHibernate.MsSql.Orders_Employee" FromRole="Orders" ToRole="Employee" />
+        <NavigationProperty Name="Shipper" Relationship="Northwind.NHibernate.MsSql.Orders_Shipper" FromRole="Orders" ToRole="Shipper" />
+      </EntityType>
+      <EntityType Name="OrderDetails">
+        <Key>
+          <PropertyRef Name="OrderID" />
+          <PropertyRef Name="ProductID" />
+        </Key>
+        <Property Name="OrderID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ProductID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="UnitPrice" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="Quantity" Type="Edm.Int16" Nullable="false" />
+        <Property Name="Discount" Type="Edm.Single" Nullable="false" />
+        <NavigationProperty Name="Order" Relationship="Northwind.NHibernate.MsSql.OrderDetails_Order" FromRole="OrderDetails" ToRole="Order" />
+        <NavigationProperty Name="Product" Relationship="Northwind.NHibernate.MsSql.OrderDetails_Product" FromRole="OrderDetails" ToRole="Product" />
+      </EntityType>
+      <EntityType Name="Products">
+        <Key>
+          <PropertyRef Name="ProductID" />
+        </Key>
+        <Property Name="ProductID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ProductName" Type="Edm.String" Nullable="true" />
+        <Property Name="SupplierID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CategoryID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="QuantityPerUnit" Type="Edm.String" Nullable="true" />
+        <Property Name="UnitPrice" Type="Edm.Decimal" Nullable="true" />
+        <Property Name="UnitsInStock" Type="Edm.Int16" Nullable="false" />
+        <Property Name="UnitsOnOrder" Type="Edm.Int16" Nullable="false" />
+        <Property Name="ReorderLevel" Type="Edm.Int16" Nullable="false" />
+        <Property Name="Discontinued" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="Category" Relationship="Northwind.NHibernate.MsSql.Products_Category" FromRole="Products" ToRole="Category" />
+        <NavigationProperty Name="Supplier" Relationship="Northwind.NHibernate.MsSql.Products_Supplier" FromRole="Products" ToRole="Supplier" />
+        <NavigationProperty Name="OrderDetails" Relationship="Northwind.NHibernate.MsSql.Products_OrderDetails" FromRole="Products" ToRole="OrderDetails" />
+      </EntityType>
+      <EntityType Name="Regions">
+        <Key>
+          <PropertyRef Name="RegionID" />
+        </Key>
+        <Property Name="RegionID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="RegionDescription" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="Territories" Relationship="Northwind.NHibernate.MsSql.Regions_Territories" FromRole="Regions" ToRole="Territories" />
+      </EntityType>
+      <EntityType Name="Shippers">
+        <Key>
+          <PropertyRef Name="ShipperID" />
+        </Key>
+        <Property Name="ShipperID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CompanyName" Type="Edm.String" Nullable="true" />
+        <Property Name="Phone" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="Orders" Relationship="Northwind.NHibernate.MsSql.Shippers_Orders" FromRole="Shippers" ToRole="Orders" />
+      </EntityType>
+      <EntityType Name="Suppliers">
+        <Key>
+          <PropertyRef Name="SupplierID" />
+        </Key>
+        <Property Name="SupplierID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CompanyName" Type="Edm.String" Nullable="true" />
+        <Property Name="ContactName" Type="Edm.String" Nullable="true" />
+        <Property Name="ContactTitle" Type="Edm.String" Nullable="true" />
+        <Property Name="Address" Type="Edm.String" Nullable="true" />
+        <Property Name="City" Type="Edm.String" Nullable="true" />
+        <Property Name="Region" Type="Edm.String" Nullable="true" />
+        <Property Name="PostalCode" Type="Edm.String" Nullable="true" />
+        <Property Name="Country" Type="Edm.String" Nullable="true" />
+        <Property Name="Phone" Type="Edm.String" Nullable="true" />
+        <Property Name="Fax" Type="Edm.String" Nullable="true" />
+        <Property Name="HomePage" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="Products" Relationship="Northwind.NHibernate.MsSql.Suppliers_Products" FromRole="Suppliers" ToRole="Products" />
+      </EntityType>
+      <EntityType Name="Territories">
+        <Key>
+          <PropertyRef Name="TerritoryID" />
+        </Key>
+        <Property Name="TerritoryID" Type="Edm.String" Nullable="false" />
+        <Property Name="TerritoryDescription" Type="Edm.String" Nullable="true" />
+        <Property Name="RegionID" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Employees" Relationship="Northwind.NHibernate.MsSql.Territories_Employees" FromRole="Territories" ToRole="Employees" />
+        <NavigationProperty Name="Region" Relationship="Northwind.NHibernate.MsSql.Territories_Region" FromRole="Territories" ToRole="Region" />
+      </EntityType>
+      <Association Name="Categories_Products">
+        <End Role="Categories" Type="Northwind.NHibernate.MsSql.Categories" Multiplicity="*" />
+        <End Role="Products" Type="Northwind.NHibernate.MsSql.Products" Multiplicity="*" />
+      </Association>
+      <Association Name="Customers_Orders">
+        <End Role="Customers" Type="Northwind.NHibernate.MsSql.Customers" Multiplicity="*" />
+        <End Role="Orders" Type="Northwind.NHibernate.MsSql.Orders" Multiplicity="*" />
+      </Association>
+      <Association Name="Customers_CustomerDemographics">
+        <End Role="Customers" Type="Northwind.NHibernate.MsSql.Customers" Multiplicity="*" />
+        <End Role="CustomerDemographics" Type="Northwind.NHibernate.MsSql.CustomerDemographics" Multiplicity="*" />
+      </Association>
+      <Association Name="CustomerDemographics_Customers">
+        <End Role="CustomerDemographics" Type="Northwind.NHibernate.MsSql.CustomerDemographics" Multiplicity="*" />
+        <End Role="Customers" Type="Northwind.NHibernate.MsSql.Customers" Multiplicity="*" />
+      </Association>
+      <Association Name="Employees_Superior">
+        <End Role="Employees" Type="Northwind.NHibernate.MsSql.Employees" Multiplicity="*" />
+        <End Role="Superior" Type="Northwind.NHibernate.MsSql.Employees" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Employees_Subordinates">
+        <End Role="Employees" Type="Northwind.NHibernate.MsSql.Employees" Multiplicity="*" />
+        <End Role="Subordinates" Type="Northwind.NHibernate.MsSql.Employees" Multiplicity="*" />
+      </Association>
+      <Association Name="Employees_Orders">
+        <End Role="Employees" Type="Northwind.NHibernate.MsSql.Employees" Multiplicity="*" />
+        <End Role="Orders" Type="Northwind.NHibernate.MsSql.Orders" Multiplicity="*" />
+      </Association>
+      <Association Name="Employees_Territories">
+        <End Role="Employees" Type="Northwind.NHibernate.MsSql.Employees" Multiplicity="*" />
+        <End Role="Territories" Type="Northwind.NHibernate.MsSql.Territories" Multiplicity="*" />
+      </Association>
+      <Association Name="Orders_OrderDetails">
+        <End Role="Orders" Type="Northwind.NHibernate.MsSql.Orders" Multiplicity="*" />
+        <End Role="OrderDetails" Type="Northwind.NHibernate.MsSql.OrderDetails" Multiplicity="*" />
+      </Association>
+      <Association Name="Orders_Customer">
+        <End Role="Orders" Type="Northwind.NHibernate.MsSql.Orders" Multiplicity="*" />
+        <End Role="Customer" Type="Northwind.NHibernate.MsSql.Customers" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Orders_Employee">
+        <End Role="Orders" Type="Northwind.NHibernate.MsSql.Orders" Multiplicity="*" />
+        <End Role="Employee" Type="Northwind.NHibernate.MsSql.Employees" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Orders_Shipper">
+        <End Role="Orders" Type="Northwind.NHibernate.MsSql.Orders" Multiplicity="*" />
+        <End Role="Shipper" Type="Northwind.NHibernate.MsSql.Shippers" Multiplicity="0..1" />
+      </Association>
+      <Association Name="OrderDetails_Order">
+        <End Role="OrderDetails" Type="Northwind.NHibernate.MsSql.OrderDetails" Multiplicity="*" />
+        <End Role="Order" Type="Northwind.NHibernate.MsSql.Orders" Multiplicity="0..1" />
+      </Association>
+      <Association Name="OrderDetails_Product">
+        <End Role="OrderDetails" Type="Northwind.NHibernate.MsSql.OrderDetails" Multiplicity="*" />
+        <End Role="Product" Type="Northwind.NHibernate.MsSql.Products" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Products_Category">
+        <End Role="Products" Type="Northwind.NHibernate.MsSql.Products" Multiplicity="*" />
+        <End Role="Category" Type="Northwind.NHibernate.MsSql.Categories" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Products_Supplier">
+        <End Role="Products" Type="Northwind.NHibernate.MsSql.Products" Multiplicity="*" />
+        <End Role="Supplier" Type="Northwind.NHibernate.MsSql.Suppliers" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Products_OrderDetails">
+        <End Role="Products" Type="Northwind.NHibernate.MsSql.Products" Multiplicity="*" />
+        <End Role="OrderDetails" Type="Northwind.NHibernate.MsSql.OrderDetails" Multiplicity="*" />
+      </Association>
+      <Association Name="Regions_Territories">
+        <End Role="Regions" Type="Northwind.NHibernate.MsSql.Regions" Multiplicity="*" />
+        <End Role="Territories" Type="Northwind.NHibernate.MsSql.Territories" Multiplicity="*" />
+      </Association>
+      <Association Name="Shippers_Orders">
+        <End Role="Shippers" Type="Northwind.NHibernate.MsSql.Shippers" Multiplicity="*" />
+        <End Role="Orders" Type="Northwind.NHibernate.MsSql.Orders" Multiplicity="*" />
+      </Association>
+      <Association Name="Suppliers_Products">
+        <End Role="Suppliers" Type="Northwind.NHibernate.MsSql.Suppliers" Multiplicity="*" />
+        <End Role="Products" Type="Northwind.NHibernate.MsSql.Products" Multiplicity="*" />
+      </Association>
+      <Association Name="Territories_Employees">
+        <End Role="Territories" Type="Northwind.NHibernate.MsSql.Territories" Multiplicity="*" />
+        <End Role="Employees" Type="Northwind.NHibernate.MsSql.Employees" Multiplicity="*" />
+      </Association>
+      <Association Name="Territories_Region">
+        <End Role="Territories" Type="Northwind.NHibernate.MsSql.Territories" Multiplicity="*" />
+        <End Role="Region" Type="Northwind.NHibernate.MsSql.Regions" Multiplicity="0..1" />
+      </Association>
+      <EntityContainer Name="NorthwindContext" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Categories" EntityType="Northwind.NHibernate.MsSql.Categories" />
+        <EntitySet Name="Customers" EntityType="Northwind.NHibernate.MsSql.Customers" />
+        <EntitySet Name="CustomerDemographics" EntityType="Northwind.NHibernate.MsSql.CustomerDemographics" />
+        <EntitySet Name="Employees" EntityType="Northwind.NHibernate.MsSql.Employees" />
+        <EntitySet Name="Orders" EntityType="Northwind.NHibernate.MsSql.Orders" />
+        <EntitySet Name="OrderDetails" EntityType="Northwind.NHibernate.MsSql.OrderDetails" />
+        <EntitySet Name="Products" EntityType="Northwind.NHibernate.MsSql.Products" />
+        <EntitySet Name="Regions" EntityType="Northwind.NHibernate.MsSql.Regions" />
+        <EntitySet Name="Shippers" EntityType="Northwind.NHibernate.MsSql.Shippers" />
+        <EntitySet Name="Suppliers" EntityType="Northwind.NHibernate.MsSql.Suppliers" />
+        <EntitySet Name="Territories" EntityType="Northwind.NHibernate.MsSql.Territories" />
+        <AssociationSet Name="Categories_Products" Association="Northwind.NHibernate.MsSql.Categories_Products">
+          <End Role="Categories" EntitySet="Categories" />
+          <End Role="Products" EntitySet="Products" />
+        </AssociationSet>
+        <AssociationSet Name="Customers_Orders" Association="Northwind.NHibernate.MsSql.Customers_Orders">
+          <End Role="Customers" EntitySet="Customers" />
+          <End Role="Orders" EntitySet="Orders" />
+        </AssociationSet>
+        <AssociationSet Name="Customers_CustomerDemographics" Association="Northwind.NHibernate.MsSql.Customers_CustomerDemographics">
+          <End Role="Customers" EntitySet="Customers" />
+          <End Role="CustomerDemographics" EntitySet="CustomerDemographics" />
+        </AssociationSet>
+        <AssociationSet Name="CustomerDemographics_Customers" Association="Northwind.NHibernate.MsSql.CustomerDemographics_Customers">
+          <End Role="CustomerDemographics" EntitySet="CustomerDemographics" />
+          <End Role="Customers" EntitySet="Customers" />
+        </AssociationSet>
+        <AssociationSet Name="Employees_Superior" Association="Northwind.NHibernate.MsSql.Employees_Superior">
+          <End Role="Employees" EntitySet="Employees" />
+          <End Role="Superior" EntitySet="Employees" />
+        </AssociationSet>
+        <AssociationSet Name="Employees_Subordinates" Association="Northwind.NHibernate.MsSql.Employees_Subordinates">
+          <End Role="Employees" EntitySet="Employees" />
+          <End Role="Subordinates" EntitySet="Employees" />
+        </AssociationSet>
+        <AssociationSet Name="Employees_Orders" Association="Northwind.NHibernate.MsSql.Employees_Orders">
+          <End Role="Employees" EntitySet="Employees" />
+          <End Role="Orders" EntitySet="Orders" />
+        </AssociationSet>
+        <AssociationSet Name="Employees_Territories" Association="Northwind.NHibernate.MsSql.Employees_Territories">
+          <End Role="Employees" EntitySet="Employees" />
+          <End Role="Territories" EntitySet="Territories" />
+        </AssociationSet>
+        <AssociationSet Name="Orders_OrderDetails" Association="Northwind.NHibernate.MsSql.Orders_OrderDetails">
+          <End Role="Orders" EntitySet="Orders" />
+          <End Role="OrderDetails" EntitySet="OrderDetails" />
+        </AssociationSet>
+        <AssociationSet Name="Orders_Customer" Association="Northwind.NHibernate.MsSql.Orders_Customer">
+          <End Role="Orders" EntitySet="Orders" />
+          <End Role="Customer" EntitySet="Customers" />
+        </AssociationSet>
+        <AssociationSet Name="Orders_Employee" Association="Northwind.NHibernate.MsSql.Orders_Employee">
+          <End Role="Orders" EntitySet="Orders" />
+          <End Role="Employee" EntitySet="Employees" />
+        </AssociationSet>
+        <AssociationSet Name="Orders_Shipper" Association="Northwind.NHibernate.MsSql.Orders_Shipper">
+          <End Role="Orders" EntitySet="Orders" />
+          <End Role="Shipper" EntitySet="Shippers" />
+        </AssociationSet>
+        <AssociationSet Name="OrderDetails_Order" Association="Northwind.NHibernate.MsSql.OrderDetails_Order">
+          <End Role="OrderDetails" EntitySet="OrderDetails" />
+          <End Role="Order" EntitySet="Orders" />
+        </AssociationSet>
+        <AssociationSet Name="OrderDetails_Product" Association="Northwind.NHibernate.MsSql.OrderDetails_Product">
+          <End Role="OrderDetails" EntitySet="OrderDetails" />
+          <End Role="Product" EntitySet="Products" />
+        </AssociationSet>
+        <AssociationSet Name="Products_Category" Association="Northwind.NHibernate.MsSql.Products_Category">
+          <End Role="Products" EntitySet="Products" />
+          <End Role="Category" EntitySet="Categories" />
+        </AssociationSet>
+        <AssociationSet Name="Products_Supplier" Association="Northwind.NHibernate.MsSql.Products_Supplier">
+          <End Role="Products" EntitySet="Products" />
+          <End Role="Supplier" EntitySet="Suppliers" />
+        </AssociationSet>
+        <AssociationSet Name="Products_OrderDetails" Association="Northwind.NHibernate.MsSql.Products_OrderDetails">
+          <End Role="Products" EntitySet="Products" />
+          <End Role="OrderDetails" EntitySet="OrderDetails" />
+        </AssociationSet>
+        <AssociationSet Name="Regions_Territories" Association="Northwind.NHibernate.MsSql.Regions_Territories">
+          <End Role="Regions" EntitySet="Regions" />
+          <End Role="Territories" EntitySet="Territories" />
+        </AssociationSet>
+        <AssociationSet Name="Shippers_Orders" Association="Northwind.NHibernate.MsSql.Shippers_Orders">
+          <End Role="Shippers" EntitySet="Shippers" />
+          <End Role="Orders" EntitySet="Orders" />
+        </AssociationSet>
+        <AssociationSet Name="Suppliers_Products" Association="Northwind.NHibernate.MsSql.Suppliers_Products">
+          <End Role="Suppliers" EntitySet="Suppliers" />
+          <End Role="Products" EntitySet="Products" />
+        </AssociationSet>
+        <AssociationSet Name="Territories_Employees" Association="Northwind.NHibernate.MsSql.Territories_Employees">
+          <End Role="Territories" EntitySet="Territories" />
+          <End Role="Employees" EntitySet="Employees" />
+        </AssociationSet>
+        <AssociationSet Name="Territories_Region" Association="Northwind.NHibernate.MsSql.Territories_Region">
+          <End Role="Territories" EntitySet="Territories" />
+          <End Role="Region" EntitySet="Regions" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
