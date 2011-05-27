@@ -130,9 +130,12 @@ namespace Northwind.ModelTests
                 var customers = GetCustomerDemographicsCustomers(customerDemographics);
                 Assert.AreEqual(0, customers.Count());
             }
+            // No data in CustomerDemographics table, swallow the exception
             catch (InvalidOperationException)
             {
-                // No data in CustomerDemographics table, swallow the exception
+            }
+            catch (NullReferenceException)
+            {
             }
         }
 

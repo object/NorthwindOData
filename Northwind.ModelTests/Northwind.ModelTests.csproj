@@ -46,14 +46,19 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson, Version=1.0.0.4098, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mongocsharpdriver.1.0\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.0.0.4098, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mongocsharpdriver.1.0\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.1.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
-    <Reference Include="Norm">
-      <HintPath>..\packages\NoRM.0.9.8\lib\Norm.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -127,9 +132,13 @@
       <Project>{2A909E4D-6493-4D36-9FDE-786B89F9A387}</Project>
       <Name>Northwind.InMemory</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Northwind.MongoDB\Northwind.MongoDB.csproj">
+    <ProjectReference Include="..\Northwind.Mongo.Entities\Northwind.Mongo.Entities.csproj">
+      <Project>{3C63EE66-659F-46A5-9092-DE4C5E02FAED}</Project>
+      <Name>Northwind.Mongo.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.Mongo\Northwind.Mongo.csproj">
       <Project>{7A1B3F9D-ED52-472E-9F1A-F3A8DA76CA34}</Project>
-      <Name>Northwind.MongoDB</Name>
+      <Name>Northwind.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Northwind.NHibernate.MsSql\Northwind.NHibernate.MsSql.csproj">
       <Project>{1B1A12B5-4376-4EAC-B1C0-C65753A6F146}</Project>

@@ -86,6 +86,7 @@
     <Content Include="EntityFrameworkModelFirstAllOracle.svc" />
     <Content Include="EntityFrameworkModelFirstOracle.svc" />
     <Content Include="InMemory.svc" />
+    <Content Include="MongoDb.svc" />
     <Content Include="NHibernateMsSql.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -117,6 +118,9 @@
     <Compile Include="InMemory.svc.cs">
       <DependentUpon>InMemory.svc</DependentUpon>
     </Compile>
+    <Compile Include="MongoDb.svc.cs">
+      <DependentUpon>MongoDb.svc</DependentUpon>
+    </Compile>
     <Compile Include="NHibernateMsSql.svc.cs">
       <DependentUpon>NHibernateMsSql.svc</DependentUpon>
     </Compile>
@@ -129,6 +133,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataServiceProvider\DataServiceProvider.csproj">
+      <Project>{6B6D1F18-EABE-4219-B86A-D18FB61C9DE0}</Project>
+      <Name>DataServiceProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Northwind.EntityFramework.CodeFirst.Entities\Northwind.EntityFramework.CodeFirst.Entities.csproj">
       <Project>{369FC2FF-B783-436E-B860-1FC4FD6A0908}</Project>
       <Name>Northwind.EntityFramework.CodeFirst.Entities</Name>
@@ -156,6 +164,10 @@
     <ProjectReference Include="..\Northwind.InMemory\Northwind.InMemory.csproj">
       <Project>{2A909E4D-6493-4D36-9FDE-786B89F9A387}</Project>
       <Name>Northwind.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.Mongo.Service\Northwind.Mongo.Service.csproj">
+      <Project>{C9BD8098-E922-4F22-9BCC-223070F1CA39}</Project>
+      <Name>Northwind.Mongo.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Northwind.NHibernate.MsSql\Northwind.NHibernate.MsSql.csproj">
       <Project>{1B1A12B5-4376-4EAC-B1C0-C65753A6F146}</Project>

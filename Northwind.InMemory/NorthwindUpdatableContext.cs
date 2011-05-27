@@ -111,20 +111,14 @@ namespace Northwind.InMemory
             RemoveEntityFromContainer(entity);
         }
 
-        private IEnumerable<object> GetEntityContainer(Type entityType)
-        {
-            var containerField = FindContainerField(entityType);
-            return containerField.GetValue(this) as IEnumerable<object>;
-        }
-
-        private void AddEntityToContainer(object entity)
+        internal void AddEntityToContainer(object entity)
         {
             var containerField = FindContainerField(entity.GetType());
             var method = containerField.FieldType.GetMethod("Add");
             method.Invoke(containerField.GetValue(this), new object[] { entity });
         }
 
-        private void RemoveEntityFromContainer(object entity)
+        internal void RemoveEntityFromContainer(object entity)
         {
             var containerField = FindContainerField(entity.GetType());
             var method = containerField.FieldType.GetMethod("Remove");

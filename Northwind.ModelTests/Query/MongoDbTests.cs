@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
-using Northwind.Utils;
+using MongoDB.Bson;
+using MongoDB.Driver.Builders;
 using NUnit.Framework;
-using Northwind.MongoDB;
+using Northwind.Mongo.Entities;
 
 namespace Northwind.ModelTests.Query
 {
@@ -26,12 +27,12 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<Categories> GetCategories()
         {
-            return this.context.Categories.AsQueryable();
+            return this.context.Categories.FindAll().AsQueryable();
         }
 
         public override Categories GetCategory(string categoryName)
         {
-            return context.Categories.AsQueryable().Where(x => x.CategoryName == categoryName).Single();
+            return context.Categories.FindOne(MongoDB.Driver.Builders.Query.EQ("CategoryName", categoryName));
         }
 
         public override IQueryable<Products> GetCategoryProducts(Categories category)
@@ -41,12 +42,12 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<Customers> GetCustomers()
         {
-            return this.context.Customers.AsQueryable();
+            return this.context.Customers.FindAll().AsQueryable();
         }
 
         public override Customers GetCustomer(string customerID)
         {
-            return this.context.Customers.AsQueryable().Where(x => x.CustomerID == customerID).Single();
+            return context.Customers.FindOne(MongoDB.Driver.Builders.Query.EQ("CustomerID", customerID));
         }
 
         public override IQueryable<Orders> GetCustomerOrders(Customers customer)
@@ -61,12 +62,12 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<CustomerDemographics> GetCustomerDemographics()
         {
-            return context.CustomerDemographics.AsQueryable();
+            return context.CustomerDemographics.FindAll().AsQueryable();
         }
 
         public override CustomerDemographics GetCustomerDemographics(string customerTypeID)
         {
-            return context.CustomerDemographics.AsQueryable().Where(x => x.CustomerTypeID == customerTypeID).Single();
+            return context.CustomerDemographics.FindOne(MongoDB.Driver.Builders.Query.EQ("CustomerTypeID", customerTypeID));
         }
 
         public override IQueryable<Customers> GetCustomerDemographicsCustomers(CustomerDemographics customerDemographics)
@@ -76,12 +77,14 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<Employees> GetEmployees()
         {
-            return this.context.Employees.AsQueryable();
+            return this.context.Employees.FindAll().AsQueryable();
         }
 
         public override Employees GetEmployee(string firstName, string lastName)
         {
-            return this.context.Employees.AsQueryable().Where(x => x.FirstName == firstName && x.LastName == lastName).Single();
+            return context.Employees.FindOne(MongoDB.Driver.Builders.Query.And(
+                MongoDB.Driver.Builders.Query.EQ("FirstName", firstName),
+                MongoDB.Driver.Builders.Query.EQ("LastName", lastName)));
         }
 
         public override IQueryable<Employees> GetEmployeeSubordinates(Employees employee)
@@ -106,12 +109,12 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<Orders> GetOrders()
         {
-            return this.context.Orders.AsQueryable();
+            return this.context.Orders.FindAll().AsQueryable();
         }
 
         public override Orders GetOrder(int orderID)
         {
-            return this.context.Orders.AsQueryable().Where(x => x.OrderID == orderID).Single();
+            return context.Orders.FindOne(MongoDB.Driver.Builders.Query.EQ("OrderID", orderID));
         }
 
         public override IQueryable<OrderDetails> GetOrderOrderDetails(Orders order)
@@ -136,12 +139,14 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<OrderDetails> GetOrderDetails()
         {
-            return this.context.OrderDetails.AsQueryable();
+            return this.context.OrderDetails.FindAll().AsQueryable();
         }
 
         public override OrderDetails GetOrderDetails(int orderID, int productID)
         {
-            return context.OrderDetails.AsQueryable().Where(x => x.OrderID == orderID && x.ProductID == productID).Single();
+            return context.OrderDetails.FindOne(MongoDB.Driver.Builders.Query.And(
+                MongoDB.Driver.Builders.Query.EQ("OrderID", orderID),
+                MongoDB.Driver.Builders.Query.EQ("ProductID", productID)));
         }
 
         public override Orders GetOrderDetailsOrder(OrderDetails orderDetails)
@@ -156,12 +161,12 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<Products> GetProducts()
         {
-            return this.context.Products.AsQueryable();
+            return this.context.Products.FindAll().AsQueryable();
         }
 
         public override Products GetProduct(string productName)
         {
-            return this.context.Products.AsQueryable().Where(x => x.ProductName == productName).Single();
+            return context.Products.FindOne(MongoDB.Driver.Builders.Query.EQ("ProductName", productName));
         }
 
         public override Categories GetProductCategory(Products product)
@@ -181,12 +186,13 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<Regions> GetRegions()
         {
-            return this.context.Regions.AsQueryable();
+            return this.context.Regions.FindAll().AsQueryable();
         }
 
         public override Regions GetRegion(string regionDescription)
         {
-            return this.context.Regions.AsQueryable().Where(x => x.RegionDescription == regionDescription).Single();
+            BsonRegularExpression regex = new BsonRegularExpression(string.Format("{0}(\\s+)", regionDescription));
+            return context.Regions.FindOne(MongoDB.Driver.Builders.Query.Matches("RegionDescription", regex));
         }
 
         public override IQueryable<Territories> GetRegionTerritories(Regions region)
@@ -196,12 +202,12 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<Shippers> GetShippers()
         {
-            return this.context.Shippers.AsQueryable();
+            return this.context.Shippers.FindAll().AsQueryable();
         }
 
         public override Shippers GetShipper(string companyName)
         {
-            return this.context.Shippers.AsQueryable().Where(x => x.CompanyName == companyName).Single();
+            return context.Shippers.FindOne(MongoDB.Driver.Builders.Query.EQ("CompanyName", companyName));
         }
 
         public override IQueryable<Orders> GetShipperOrders(Shippers shipper)
@@ -211,12 +217,12 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<Suppliers> GetSuppliers()
         {
-            return this.context.Suppliers.AsQueryable();
+            return this.context.Suppliers.FindAll().AsQueryable();
         }
 
         public override Suppliers GetSupplier(string companyName)
         {
-            return this.context.Suppliers.AsQueryable().Where(x => x.CompanyName == companyName).Single();
+            return context.Suppliers.FindOne(MongoDB.Driver.Builders.Query.EQ("CompanyName", companyName));
         }
 
         public override IQueryable<Products> GetSupplierProducts(Suppliers suppliers)
@@ -226,12 +232,13 @@ namespace Northwind.ModelTests.Query
 
         public override IQueryable<Territories> GetTerritories()
         {
-            return this.context.Territories.AsQueryable();
+            return this.context.Territories.FindAll().AsQueryable();
         }
 
         public override Territories GetTerritory(string territoryDescription)
         {
-            return this.context.Territories.AsQueryable().Where(x => x.TerritoryDescription == territoryDescription).Single();
+            BsonRegularExpression regex = new BsonRegularExpression(string.Format("{0}(\\s+)", territoryDescription));
+            return context.Territories.FindOne(MongoDB.Driver.Builders.Query.Matches("TerritoryDescription", territoryDescription));
         }
 
         public override Regions GetTerritoryRegion(Territories territories)

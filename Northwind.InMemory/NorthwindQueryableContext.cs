@@ -55,8 +55,34 @@ namespace Northwind.InMemory
         {
             var sourceContext = new Northwind.EntityFramework.ModelFirst.MsSql.NorthwindMsSqlContext(ConfigurationManager.ConnectionStrings["NorthwindContext.EF.MF.MsSql"].ConnectionString);
 
-            var entityCloner = new EntityCloner(sourceContext, this, this.AddEntityToContainer, this.GetEntityContainer, () => {});
+            var entityCloner = new EntityCloner(sourceContext, new InMemoryEntityCloner(this));
             entityCloner.CopyEntities();
+        }
+    }
+
+    class InMemoryEntityCloner : ReflectionEntityCloner
+    {
+        private NorthwindContext context;
+        private Dictionary<string, Type> entityTypes = new Dictionary<string, Type>();
+
+        public InMemoryEntityCloner(NorthwindContext context)
+        {
+            this.context = context;
+        }
+
+        public override object Context { get { return this.context; } }
+
+        public override void AddEntity(object entity, string entityTypeName)
+        {
+            this.context.AddEntityToContainer(entity);
+        }
+
+        public override void UpdateEntity(object entity)
+        {
+        }
+
+        public override void SaveChanges()
+        {
         }
     }
 }
