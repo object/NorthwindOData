@@ -12,13 +12,8 @@ using Northwind.Mongo.Service;
 
 namespace Northwind.Service
 {
-    public class MongoDb : MongoDataService
+    public class MongoDbKeyValue : MongoDataService<MongoKeyValueContext, MongoKeyValueMetadata>
     {
-        public MongoDb()
-        {
-
-        }
-
         public static void InitializeService(DataServiceConfiguration config)
         {
             config.SetEntitySetAccessRule("*", EntitySetRights.AllRead);

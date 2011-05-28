@@ -17,6 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.ServiceTests", "N
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D0D2CB2F-C630-4ABF-A298-3744D1CC44E6}"
 	ProjectSection(SolutionItems) = preProject
+		ConnectionStrings.config = ConnectionStrings.config
 		Northwind.MsSql.sql = Northwind.MsSql.sql
 		Northwind.Oracle.sql = Northwind.Oracle.sql
 	EndProjectSection
@@ -46,6 +47,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D3749B5D-612D-4CD7-A1DF-B37D7DC884CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Mongo.Entities", "Northwind.Mongo.Entities\Northwind.Mongo.Entities.csproj", "{3C63EE66-659F-46A5-9092-DE4C5E02FAED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Mongo.Service.Tests", "Northwind.Mongo.Service.Tests\Northwind.Mongo.Service.Tests.csproj", "{8C580647-C8E4-40A3-ACF3-E35387E08225}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +120,10 @@ Global
 		{3C63EE66-659F-46A5-9092-DE4C5E02FAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C63EE66-659F-46A5-9092-DE4C5E02FAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C63EE66-659F-46A5-9092-DE4C5E02FAED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C580647-C8E4-40A3-ACF3-E35387E08225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C580647-C8E4-40A3-ACF3-E35387E08225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C580647-C8E4-40A3-ACF3-E35387E08225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C580647-C8E4-40A3-ACF3-E35387E08225}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,5 +143,6 @@ Global
 		{3C63EE66-659F-46A5-9092-DE4C5E02FAED} = {E9E97FCB-1596-4704-B9FF-251FADB71B00}
 		{4F7BDE7C-3CC9-47E4-8DA6-A32CA04D1056} = {D3749B5D-612D-4CD7-A1DF-B37D7DC884CE}
 		{632AB373-8C60-499F-AF0E-EF9348E3B0E1} = {D3749B5D-612D-4CD7-A1DF-B37D7DC884CE}
+		{8C580647-C8E4-40A3-ACF3-E35387E08225} = {D3749B5D-612D-4CD7-A1DF-B37D7DC884CE}
 	EndGlobalSection
 EndGlobal

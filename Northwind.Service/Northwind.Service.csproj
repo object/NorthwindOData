@@ -86,7 +86,8 @@
     <Content Include="EntityFrameworkModelFirstAllOracle.svc" />
     <Content Include="EntityFrameworkModelFirstOracle.svc" />
     <Content Include="InMemory.svc" />
-    <Content Include="MongoDb.svc" />
+    <Content Include="MongoDbKeyValue.svc" />
+    <Content Include="MongoDbStrongType.svc" />
     <Content Include="NHibernateMsSql.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -118,8 +119,11 @@
     <Compile Include="InMemory.svc.cs">
       <DependentUpon>InMemory.svc</DependentUpon>
     </Compile>
-    <Compile Include="MongoDb.svc.cs">
-      <DependentUpon>MongoDb.svc</DependentUpon>
+    <Compile Include="MongoDbKeyValue.svc.cs">
+      <DependentUpon>MongoDbKeyValue.svc</DependentUpon>
+    </Compile>
+    <Compile Include="MongoDbStrongType.svc.cs">
+      <DependentUpon>MongoDbStrongType.svc</DependentUpon>
     </Compile>
     <Compile Include="NHibernateMsSql.svc.cs">
       <DependentUpon>NHibernateMsSql.svc</DependentUpon>
@@ -174,6 +178,11 @@
       <Name>Northwind.NHibernate.MsSql</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\ConnectionStrings.config">
+      <Link>ConnectionStrings.config</Link>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
@@ -196,6 +205,9 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>if exist $(ProjectDir)..\ConnectionStrings.config xcopy $(ProjectDir)..\ConnectionStrings.config $(ProjectDir) /Y /R</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

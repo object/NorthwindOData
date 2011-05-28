@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C9BD8098-E922-4F22-9BCC-223070F1CA39}</ProjectGuid>
+    <ProjectGuid>{8C580647-C8E4-40A3-ACF3-E35387E08225}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Northwind.Mongo.Service</RootNamespace>
-    <AssemblyName>Northwind.Mongo.Service</AssemblyName>
+    <RootNamespace>Northwind.Mongo.Service.Tests</RootNamespace>
+    <AssemblyName>Northwind.Mongo.Service.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,16 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MongoDB.Bson, Version=1.0.0.4098, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\mongocsharpdriver.1.0\lib\net35\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=1.0.0.4098, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="nunit.mocks, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\mongocsharpdriver.1.0\lib\net35\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services" />
     <Reference Include="System.Xml.Linq" />
@@ -50,28 +52,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMongoDSPContext.cs" />
-    <Compile Include="IMongoDSPMetadata.cs" />
-    <Compile Include="MongoKeyValueContext.cs" />
-    <Compile Include="MongoStrongTypeContext.cs" />
-    <Compile Include="MongoKeyValueMetadata.cs" />
-    <Compile Include="MongoDataService.cs" />
-    <Compile Include="MongoMetadataBase.cs" />
+    <Compile Include="MetadataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MongoStrongTypeMetadata.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ConnectionStrings.config">
+      <Link>ConnectionStrings.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataServiceProvider\DataServiceProvider.csproj">
       <Project>{6B6D1F18-EABE-4219-B86A-D18FB61C9DE0}</Project>
       <Name>DataServiceProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Northwind.Mongo\Northwind.Mongo.csproj">
-      <Project>{7A1B3F9D-ED52-472E-9F1A-F3A8DA76CA34}</Project>
-      <Name>Northwind.Mongo</Name>
+    <ProjectReference Include="..\Northwind.Mongo.Service\Northwind.Mongo.Service.csproj">
+      <Project>{C9BD8098-E922-4F22-9BCC-223070F1CA39}</Project>
+      <Name>Northwind.Mongo.Service</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

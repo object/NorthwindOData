@@ -116,7 +116,7 @@ namespace Northwind.Mongo.Entities
                 var objectId = bsonEntity["_id"].AsObjectId;
                 var collectionName = this.entityCollectionMap[objectId];
                 var collection = this.context.Database.GetCollection<BsonDocument>(collectionName);
-                collection.Update(Query.EQ("_id", objectId), MongoDB.Driver.Builders.Update.Set(propertyName, linkedValue));
+                collection.Update(Query.EQ("_id", objectId), Update.Set(propertyName, linkedValue));
             }
 
             private object ConvertValue(object value)
