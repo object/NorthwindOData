@@ -15,7 +15,7 @@ namespace Northwind.NHibernate.MsSql
         public virtual string TitleOfCourtesy { get; set; }
         public virtual DateTime? BirthDate { get; set; }
         public virtual DateTime? HireDate { get; set; }
-        public virtual AddressDetails AddressDetails { get; private set; }
+        public virtual AddressDetails AddressDetails { get; set; }
         public virtual string HomePhone { get; set; }
         public virtual string Extension { get; set; }
         public virtual byte[] Photo { get; set; }

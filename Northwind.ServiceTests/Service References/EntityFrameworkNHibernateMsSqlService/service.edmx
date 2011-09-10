@@ -19,16 +19,19 @@
         <Property Name="CompanyName" Type="Edm.String" Nullable="true" />
         <Property Name="ContactName" Type="Edm.String" Nullable="true" />
         <Property Name="ContactTitle" Type="Edm.String" Nullable="true" />
-        <Property Name="Address" Type="Edm.String" Nullable="true" />
-        <Property Name="City" Type="Edm.String" Nullable="true" />
-        <Property Name="Region" Type="Edm.String" Nullable="true" />
-        <Property Name="PostalCode" Type="Edm.String" Nullable="true" />
-        <Property Name="Country" Type="Edm.String" Nullable="true" />
+        <Property Name="AddressDetails" Type="Northwind.NHibernate.MsSql.AddressDetails" Nullable="false" />
         <Property Name="Phone" Type="Edm.String" Nullable="true" />
         <Property Name="Fax" Type="Edm.String" Nullable="true" />
         <NavigationProperty Name="Orders" Relationship="Northwind.NHibernate.MsSql.Customers_Orders" FromRole="Customers" ToRole="Orders" />
         <NavigationProperty Name="CustomerDemographics" Relationship="Northwind.NHibernate.MsSql.Customers_CustomerDemographics" FromRole="Customers" ToRole="CustomerDemographics" />
       </EntityType>
+      <ComplexType Name="AddressDetails">
+        <Property Name="Address" Type="Edm.String" Nullable="true" />
+        <Property Name="City" Type="Edm.String" Nullable="true" />
+        <Property Name="Region" Type="Edm.String" Nullable="true" />
+        <Property Name="PostalCode" Type="Edm.String" Nullable="true" />
+        <Property Name="Country" Type="Edm.String" Nullable="true" />
+      </ComplexType>
       <EntityType Name="CustomerDemographics">
         <Key>
           <PropertyRef Name="CustomerTypeID" />
@@ -48,11 +51,7 @@
         <Property Name="TitleOfCourtesy" Type="Edm.String" Nullable="true" />
         <Property Name="BirthDate" Type="Edm.DateTime" Nullable="true" />
         <Property Name="HireDate" Type="Edm.DateTime" Nullable="true" />
-        <Property Name="Address" Type="Edm.String" Nullable="true" />
-        <Property Name="City" Type="Edm.String" Nullable="true" />
-        <Property Name="Region" Type="Edm.String" Nullable="true" />
-        <Property Name="PostalCode" Type="Edm.String" Nullable="true" />
-        <Property Name="Country" Type="Edm.String" Nullable="true" />
+        <Property Name="AddressDetails" Type="Northwind.NHibernate.MsSql.AddressDetails" Nullable="false" />
         <Property Name="HomePhone" Type="Edm.String" Nullable="true" />
         <Property Name="Extension" Type="Edm.String" Nullable="true" />
         <Property Name="Photo" Type="Edm.Binary" Nullable="true" />
@@ -143,11 +142,7 @@
         <Property Name="CompanyName" Type="Edm.String" Nullable="true" />
         <Property Name="ContactName" Type="Edm.String" Nullable="true" />
         <Property Name="ContactTitle" Type="Edm.String" Nullable="true" />
-        <Property Name="Address" Type="Edm.String" Nullable="true" />
-        <Property Name="City" Type="Edm.String" Nullable="true" />
-        <Property Name="Region" Type="Edm.String" Nullable="true" />
-        <Property Name="PostalCode" Type="Edm.String" Nullable="true" />
-        <Property Name="Country" Type="Edm.String" Nullable="true" />
+        <Property Name="AddressDetails" Type="Northwind.NHibernate.MsSql.AddressDetails" Nullable="false" />
         <Property Name="Phone" Type="Edm.String" Nullable="true" />
         <Property Name="Fax" Type="Edm.String" Nullable="true" />
         <Property Name="HomePage" Type="Edm.String" Nullable="true" />

@@ -17,7 +17,7 @@ namespace Northwind.EntityFramework.CodeFirst.Entities
         public string TitleOfCourtesy { get; set; }
         public DateTime? BirthDate { get; set; }
         public DateTime? HireDate { get; set; }
-        public AddressDetails AddressDetails { get; private set; }
+        public AddressDetails AddressDetails { get; set; }
         public string HomePhone { get; set; }
         public string Extension { get; set; }
         public byte[] Photo { get; set; }

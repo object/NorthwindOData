@@ -37,16 +37,19 @@
         <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="ContactName" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="ContactTitle" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Address" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="City" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Region" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="PostalCode" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="AddressDetails" Type="Northwind.EntityFramework.CodeFirst.MsSql.AddressDetails" Nullable="false" />
         <Property Name="Phone" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="Fax" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="HomePage" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <NavigationProperty Name="Products" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Suppliers_Products" FromRole="Suppliers_Products_Source" ToRole="Suppliers_Products_Target" />
       </EntityType>
+      <ComplexType Name="AddressDetails">
+        <Property Name="Address" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="City" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="Region" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="PostalCode" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+      </ComplexType>
       <EntityType Name="OrderDetails">
         <Key>
           <PropertyRef Name="OrderID" />
@@ -91,11 +94,7 @@
         <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="ContactName" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="ContactTitle" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Address" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="City" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Region" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="PostalCode" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="AddressDetails" Type="Northwind.EntityFramework.CodeFirst.MsSql.AddressDetails" Nullable="false" />
         <Property Name="Phone" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="Fax" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <NavigationProperty Name="Orders" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Customers_Orders" FromRole="Customers_Orders_Source" ToRole="Customers_Orders_Target" />
@@ -120,11 +119,7 @@
         <Property Name="TitleOfCourtesy" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="BirthDate" Type="Edm.DateTime" Nullable="true" />
         <Property Name="HireDate" Type="Edm.DateTime" Nullable="true" />
-        <Property Name="Address" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="City" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Region" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="PostalCode" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="AddressDetails" Type="Northwind.EntityFramework.CodeFirst.MsSql.AddressDetails" Nullable="false" />
         <Property Name="HomePhone" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="Extension" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
         <Property Name="Photo" Type="Edm.Binary" Nullable="true" FixedLength="false" />

@@ -11,42 +11,50 @@ namespace Northwind.Mongo.Service
 {
     public class MongoStrongTypeContext : IMongoDSPContext
     {
+        private static DSPContext cachedContext = null;
         private Dictionary<ObjectId, DSPResource> resourceMap = new Dictionary<ObjectId, DSPResource>();
         private List<Tuple<ObjectId, string, ObjectId>> resourceReferences = new List<Tuple<ObjectId, string, ObjectId>>();
         private List<Tuple<ObjectId, string, List<ObjectId>>> resourceSetReferences = new List<Tuple<ObjectId, string, List<ObjectId>>>();
 
         public DSPContext CreateContext(DSPMetadata metadata)
         {
-            var dspContext = new DSPContext();
-            using (MongoContext mongoContext = new MongoContext(ConfigurationManager.ConnectionStrings["NorthwindContext.MongoDB"].ConnectionString))
+            if (cachedContext == null)
             {
-                foreach (var resourceSet in metadata.ResourceSets)
+                lock (this)
                 {
-                    var entities = dspContext.GetResourceSetEntities(resourceSet.Name);
-                    foreach (var bsonDocument in mongoContext.Database.GetCollection(resourceSet.Name).FindAll())
+                    var dspContext = new DSPContext();
+                    using (MongoContext mongoContext = new MongoContext(ConfigurationManager.ConnectionStrings["NorthwindContext.MongoDB"].ConnectionString))
                     {
-                        var resource = CreateDSPResource(resourceSet.ResourceType, bsonDocument);
-                        entities.Add(resource);
+                        foreach (var resourceSet in metadata.ResourceSets)
+                        {
+                            var entities = dspContext.GetResourceSetEntities(resourceSet.Name);
+                            foreach (var bsonDocument in mongoContext.Database.GetCollection(resourceSet.Name).FindAll())
+                            {
+                                var resource = CreateDSPResource(resourceSet.ResourceType, bsonDocument);
+                                entities.Add(resource);
+                            }
+                        }
                     }
+
+                    foreach (var reference in resourceReferences)
+                    {
+                        resourceMap[reference.Item1].SetValue(reference.Item2, resourceMap[reference.Item3]);
+                    }
+
+                    foreach (var reference in resourceSetReferences)
+                    {
+                        var referencedCollection = new List<DSPResource>();
+                        resourceMap[reference.Item1].SetValue(reference.Item2, referencedCollection);
+                        foreach (var objectId in reference.Item3)
+                        {
+                            referencedCollection.Add(resourceMap[objectId]);
+                        }
+                    }
+
+                    cachedContext = dspContext;
                 }
             }
-
-            foreach (var reference in resourceReferences)
-            {
-                resourceMap[reference.Item1].SetValue(reference.Item2, resourceMap[reference.Item3]);
-            }
-
-            foreach (var reference in resourceSetReferences)
-            {
-                var referencedCollection = new List<DSPResource>();
-                resourceMap[reference.Item1].SetValue(reference.Item2, referencedCollection);
-                foreach (var objectId in reference.Item3)
-                {
-                    referencedCollection.Add(resourceMap[objectId]);
-                }
-            }
-
-            return dspContext;
+            return cachedContext;
         }
 
         private DSPResource CreateDSPResource(ResourceType resourceType, BsonDocument bsonDocument)

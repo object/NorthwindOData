@@ -12,7 +12,7 @@ namespace Northwind.NHibernate.MsSql
         public virtual string CompanyName { get; set; }
         public virtual string ContactName { get; set; }
         public virtual string ContactTitle { get; set; }
-        public virtual AddressDetails AddressDetails { get; private set; }
+        public virtual AddressDetails AddressDetails { get; set; }
         public virtual string Phone { get; set; }
         public virtual string Fax { get; set; }
 
