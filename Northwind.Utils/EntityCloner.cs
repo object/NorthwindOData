@@ -46,33 +46,25 @@ namespace Northwind.Utils
         }
 
         private object sourceContext;
-        private object destinationContext;
-        private Action<object> AddObjectToContext;
-        private Func<Type, IEnumerable<object>> GetContextEntityContainer;
-        private Action SaveChanges;
+        private IProviderEntityCloner destinationContext;
         private readonly List<string> systemProperties = new List<string> { "EntityState", "EntityKey" };
-        private Dictionary<EntityKey, object> entityMap = new Dictionary<EntityKey, object>();
+        private Dictionary<string, Type> entityTypeMap = new Dictionary<string, Type>();
+        private Dictionary<EntityKey, object> entityKeyMap = new Dictionary<EntityKey, object>();
         private Dictionary<string, List<EntityRelation>> entityPropertyMap = new Dictionary<string, List<EntityRelation>>();
 
-        public EntityCloner(object sourceContext, object destinationContext,
-            Action<object> addObjectToContext, 
-            Func<Type, IEnumerable<object>> getContextEntityContainer,
-            Action saveChanges)
+        public EntityCloner(object sourceContext, IProviderEntityCloner destinationContext)
         {
             this.sourceContext = sourceContext;
             this.destinationContext = destinationContext;
-            this.AddObjectToContext = addObjectToContext;
-            this.GetContextEntityContainer = getContextEntityContainer;
-            this.SaveChanges = saveChanges;
         }
 
         public void CopyEntities()
         {
-            Action<PropertyInfo, PropertyInfo, object>[] actions =
-                new Action<PropertyInfo, PropertyInfo, object>[]
+            Action<object, string>[] actions =
+                new Action<object, string>[]
                     {
-                        (x, y, z) => CopyEntityProperties(z, y.PropertyType),
-                        (x, y, z) => CopyEntityRelations(z, this.entityPropertyMap[x.PropertyType.GetGenericArguments()[0].Name])
+                        (x, y) => CopyEntityProperties(x, y),
+                        (x, y) => CopyEntityRelations(x, y, this.entityPropertyMap[y])
                     };
 
             foreach (var action in actions)
@@ -82,29 +74,28 @@ namespace Northwind.Utils
                     var sourceContainer = sourceContainerProperty.GetValue(sourceContext, null) as IEnumerable<object>;
                     if (sourceContainer != null)
                     {
-                        var destinationContainerProperty = destinationContext.GetType().GetProperty(sourceContainerProperty.Name);
-
-                        if (destinationContainerProperty != null)
+                        foreach (var item in sourceContainer)
                         {
-                            foreach (var item in sourceContainer)
-                            {
-                                action(sourceContainerProperty, destinationContainerProperty, item);
-                            }
+                            action(item, sourceContainerProperty.Name);
                         }
                     }
                 }
-                SaveChanges();
+                this.destinationContext.SaveChanges();
             }
         }
 
-        private void CopyEntityProperties(object sourceObject, Type entityContainerType)
+        private void CopyEntityProperties(object sourceObject, string entityTypeName)
         {
-            var entityType = entityContainerType.GetGenericArguments()[0].UnderlyingSystemType;
-            if (!this.entityPropertyMap.ContainsKey(entityType.Name))
-                this.entityPropertyMap.Add(entityType.Name, new List<EntityRelation>());
-            var entityProperties = this.entityPropertyMap[entityType.Name];
+            Type entityType;
+            if (!this.entityTypeMap.ContainsKey(entityTypeName))
+                this.entityTypeMap.Add(entityTypeName, this.destinationContext.GetEntityType(entityTypeName));
+            entityType = this.entityTypeMap[entityTypeName];
 
-            var entity = Activator.CreateInstance(entityType);
+            if (!this.entityPropertyMap.ContainsKey(entityTypeName))
+                this.entityPropertyMap.Add(entityTypeName, new List<EntityRelation>());
+            var entityProperties = this.entityPropertyMap[entityTypeName];
+
+            var entity = this.destinationContext.CreateEntityInstance(entityType);
 
             foreach (var propertyInfo in sourceObject.GetType().GetProperties())
             {
@@ -127,23 +118,20 @@ namespace Northwind.Utils
                 if (entityProperty.PropertyRelationType == PropertyRelationType.Column)
                 {
                     var propertyValue = propertyInfo.GetValue(sourceObject, null);
-                    foreach (var prop in entity.GetType().GetProperties())
+                    if (propertyValue != null)
                     {
-                        if (string.Compare(prop.Name, propertyInfo.Name, true) == 0 && propertyValue != null)
-                        {
-                            prop.SetValue(entity, ConvertValue(propertyValue, prop.PropertyType), null);
-                        }
+                        this.destinationContext.SetProperty(entity, propertyInfo.Name, propertyValue);
                     }
                 }
             }
 
             var entityKey = sourceObject is EntityReference ? (sourceObject as EntityReference).EntityKey : (sourceObject as EntityObject).EntityKey;
-            this.entityMap.Add(entityKey, entity);
+            this.entityKeyMap.Add(entityKey, entity);
 
-            AddObjectToContext(entity);
+            this.destinationContext.AddEntity(entity, entityTypeName);
         }
 
-        private void CopyEntityRelations(object sourceObject, List<EntityRelation> entityRelations)
+        private void CopyEntityRelations(object sourceObject, string entityTypeName, List<EntityRelation> entityRelations)
         {
             foreach (var entityRelation in entityRelations.Where(x =>
                 x.PropertyRelationType == PropertyRelationType.Reference ||
@@ -155,61 +143,61 @@ namespace Northwind.Utils
                     switch (entityRelation.PropertyRelationType)
                     {
                         case PropertyRelationType.Reference:
-                            CopyManyToOneRelation(sourceObject, propertyValue);
+                            CopyManyToOneRelation(sourceObject, entityRelation.EntityProperty.Name, propertyValue);
                             break;
 
                         case PropertyRelationType.ReferencedByMany:
-                            CopyOneToManyRelation(sourceObject, propertyValue);
-                            CopyManyToManyRelation(sourceObject, propertyValue);
+                            CopyOneToManyRelation(sourceObject, entityRelation.EntityProperty.Name, propertyValue);
+                            CopyManyToManyRelation(sourceObject, entityRelation.EntityProperty.Name, propertyValue);
                             break;
                     }
                 }
             }
         }
 
-        private void CopyManyToOneRelation(object sourceObject, object propertyValue)
+        private void CopyManyToOneRelation(object sourceObject, string propertyName, object propertyValue)
         {
-            var referencedEntity = propertyValue;
-            foreach (var entityProperty in GetRelationProperties(sourceObject, referencedEntity.GetType(), PropertyRelationType.ReferencedByMany))
+            var linkedEntity = propertyValue;
+            foreach (var entityProperty in GetRelationProperties(sourceObject, linkedEntity.GetType(), PropertyRelationType.ReferencedByMany))
             {
-                var referencedContainer = entityProperty.EntityProperty.GetValue(referencedEntity, null) as IEnumerable<object>;
+                var referencedContainer = entityProperty.EntityProperty.GetValue(linkedEntity, null) as IEnumerable<object>;
                 if (referencedContainer != null)
                 {
-                    foreach (var referringEntity in referencedContainer)
+                    foreach (var entity in referencedContainer)
                     {
-                        AddRelationToEntity(referringEntity, referencedEntity);
+                        LinkEntities(entity, propertyName, linkedEntity, this.destinationContext.SetLink);
                     }
                 }
             }
         }
 
-        private void CopyOneToManyRelation(object sourceObject, object propertyValue)
+        private void CopyOneToManyRelation(object sourceObject, string propertyName, object propertyValue)
         {
-            foreach (var referencedEntity in propertyValue as IEnumerable<object>)
+            foreach (var linkedEntity in propertyValue as IEnumerable<object>)
             {
-                foreach (var entityProperty in GetRelationProperties(sourceObject, referencedEntity.GetType(), PropertyRelationType.Reference))
+                foreach (var entityProperty in GetRelationProperties(sourceObject, linkedEntity.GetType(), PropertyRelationType.Reference))
                 {
-                    var referringEntity = entityProperty.EntityProperty.GetValue(referencedEntity, null);
-                    if (referringEntity != null)
+                    var entity = entityProperty.EntityProperty.GetValue(linkedEntity, null);
+                    if (entity != null)
                     {
-                        AddRelationToEntity(referringEntity, referencedEntity);
+                        LinkEntities(entity, propertyName, linkedEntity, this.destinationContext.AddLink);
                     }
                 }
             }
         }
 
-        private void CopyManyToManyRelation(object sourceObject, object propertyValue)
+        private void CopyManyToManyRelation(object sourceObject, string propertyName, object propertyValue)
         {
-            foreach (var referencedEntity in propertyValue as IEnumerable<object>)
+            foreach (var linkedEntity in propertyValue as IEnumerable<object>)
             {
-                foreach (var entityProperty in GetRelationProperties(sourceObject, referencedEntity.GetType(), PropertyRelationType.ReferencedByMany))
+                foreach (var entityProperty in GetRelationProperties(sourceObject, linkedEntity.GetType(), PropertyRelationType.ReferencedByMany))
                 {
-                    var referencedContainer = entityProperty.EntityProperty.GetValue(referencedEntity, null) as IEnumerable<object>;
+                    var referencedContainer = entityProperty.EntityProperty.GetValue(linkedEntity, null) as IEnumerable<object>;
                     if (referencedContainer != null)
                     {
-                        foreach (var referringEntity in referencedContainer)
+                        foreach (var entity in referencedContainer)
                         {
-                            AddRelationToEntity(referringEntity, referencedEntity);
+                            LinkEntities(entity, propertyName, linkedEntity, this.destinationContext.AddLink);
                         }
                     }
                 }
@@ -223,62 +211,26 @@ namespace Northwind.Utils
                             (x.PropertyRelationType == relationType));
         }
 
-        private void AddRelationToEntity(object referringEntity, object referencedEntity)
+        private void LinkEntities(object entity, string propertyName, object linkedEntity, Action<object, string, object> linkAction)
         {
-            foreach (var entityProperty in this.entityPropertyMap[referringEntity.GetType().Name]
-                .Where(x => x.PropertyEntityType == referencedEntity.GetType() &&
-                    (x.PropertyRelationType == PropertyRelationType.Reference || x.PropertyRelationType == PropertyRelationType.ReferencedByMany)))
-            {
-                Action<object, object> linkAction;
-                switch (entityProperty.PropertyRelationType)
-                {
-                    case PropertyRelationType.Reference:
-                        LinkEntities(referringEntity, referencedEntity, SetLink);
-                        break;
-                    case PropertyRelationType.ReferencedByMany:
-                        LinkEntities(referringEntity, referencedEntity, AddLink);
-                        break;
-                }
-            }
-        }
-
-        private void LinkEntities(object referringEntity, object referencedEntity, Action<object, object> linkAction)
-        {
-            var destinationEntity = FindEntity(referringEntity);
-            var destinationReferencedEntity = FindEntity(referencedEntity);
+            var destinationEntity = FindEntity(entity);
+            var destinationReferencedEntity = FindEntity(linkedEntity);
             if (destinationEntity == null || destinationReferencedEntity == null) return;
-            linkAction(destinationEntity, destinationReferencedEntity);
-        }
-
-        private void AddLink(object referringEntity, object referencedEntity)
-        {
-            var collectionProperty = referringEntity.GetType().GetProperties()
-                .Where(x => x.PropertyType.IsGenericType &&
-                            x.PropertyType.GetGenericArguments()[0] == referencedEntity.GetType() &&
-                            x.GetValue(referringEntity, null) is IEnumerable<object>).Single();
-            var method = collectionProperty.PropertyType.GetMethod("Add");
-            method.Invoke(collectionProperty.GetValue(referringEntity, null), new object[] { referencedEntity });
-        }
-
-        private void SetLink(object referringEntity, object referencedEntity)
-        {
-            var property = referringEntity.GetType().GetProperties()
-                .Where(x => x.PropertyType == referencedEntity.GetType() && 
-                    !(x.GetValue(referringEntity, null) is IEnumerable<object>)).Single();
-            property.SetValue(referringEntity, referencedEntity, null);
+            linkAction(destinationEntity, propertyName, destinationReferencedEntity);
+            this.destinationContext.UpdateEntity(destinationEntity);
         }
 
         private object FindEntity(object entity)
         {
             var entityKey = entity is EntityReference ? (entity as EntityReference).EntityKey : (entity as EntityObject).EntityKey;
-            return this.entityMap[entityKey];
+            return this.entityKeyMap[entityKey];
         }
 
         private PropertyRelationType GetPropertyRelationType(PropertyInfo propertyInfo)
         {
             if (this.systemProperties.Contains(propertyInfo.Name))
                 return PropertyRelationType.System;
-            else if (!propertyInfo.PropertyType.IsClass ||
+            else if (propertyInfo.PropertyType.IsValueType ||
                 propertyInfo.PropertyType == typeof(string) ||
                 propertyInfo.PropertyType == typeof(byte[]))
                 return PropertyRelationType.Column;
@@ -290,45 +242,6 @@ namespace Northwind.Utils
                 return PropertyRelationType.Reference;
             else
                 return PropertyRelationType.Unknown;
-        }
-
-        private bool EntityKeysEqual(object sourceEntity, object destinationEntity)
-        {
-            if (sourceEntity.GetType().Name != destinationEntity.GetType().Name)
-                return false;
-
-            var entityKey = sourceEntity is EntityReference ? (sourceEntity as EntityReference).EntityKey : (sourceEntity as EntityObject).EntityKey;
-            foreach (var keyPropertyInfo in entityKey.EntityKeyValues)
-            {
-                var destinationPropertyInfo = destinationEntity.GetType().GetProperty(keyPropertyInfo.Key);
-                if (destinationPropertyInfo != null)
-                {
-                    var sourceValue = keyPropertyInfo.Value;
-                    var destinationValue = destinationPropertyInfo.GetValue(destinationEntity, null);
-                    if (sourceValue == null && destinationValue != null || !sourceValue.Equals(destinationValue))
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        private object ConvertValue(object value, Type conversionType)
-        {
-            if (value == null)
-            {
-                return null;
-            }
-
-            if (conversionType.IsGenericType &&
-                conversionType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
-            {
-                var nullableConverter = new NullableConverter(conversionType);
-                conversionType = nullableConverter.UnderlyingType;
-            }
-
-            return Convert.ChangeType(value, conversionType);
         }
     }
 }

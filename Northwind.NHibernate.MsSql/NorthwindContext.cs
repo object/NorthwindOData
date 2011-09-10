@@ -79,15 +79,15 @@ namespace Northwind.NHibernate.MsSql
             return Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008
                 .ConnectionString(connectionString)
+                .ShowSql())
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NorthwindContext>())
                 .Cache(c => c
                     .UseQueryCache()
                     .ProviderClass<HashtableCacheProvider>())
-                .ShowSql())
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NorthwindContext>())
                 .BuildSessionFactory();
         }
 
-        public ISession Session
+        public new ISession Session
         {
             get { return base.Session; }
         }

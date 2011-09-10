@@ -22,6 +22,10 @@ namespace Northwind.ModelTests.Query
             return new NorthwindContext(session);
         }
 
+        public override void DisposeContext(NorthwindContext context)
+        {
+        }
+
         public override IQueryable<Categories> GetCategories()
         {
             return context.Categories;

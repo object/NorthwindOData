@@ -19,6 +19,11 @@ namespace Northwind.ModelTests.Query
             return new NorthwindOracleContext(ConfigurationManager.ConnectionStrings["NorthwindContext.EF.MF.Oracle"].ConnectionString);
         }
 
+        public override void DisposeContext(NorthwindOracleContext context)
+        {
+            context.Dispose();
+        }
+
         public override IQueryable<Categories> GetCategories()
         {
             return context.Categories;
@@ -237,16 +242,37 @@ namespace Northwind.ModelTests.Query
         [Test, Explicit]
         public void CopyData()
         {
-            var thisContext = CreateContext();
+            CreateContext();
             var sourceContext = new Northwind.EntityFramework.ModelFirst.MsSql.NorthwindMsSqlContext(ConfigurationManager.ConnectionStrings["NorthwindContext.EF.MF.MsSql"].ConnectionString);
 
-            var entityCloner = new EntityCloner(sourceContext, context, 
-                x => this.context.AddObject(x.GetType().Name, x), 
-                x => this.context.GetType().GetProperty(x.UnderlyingSystemType.Name).GetValue(this.context, null) as IEnumerable<object>,
-                () => this.context.SaveChanges());
-
+            var entityCloner = new EntityCloner(sourceContext, new OracleEntityCloner(this.context));
             entityCloner.CopyEntities();
-            this.context.SaveChanges();
+        }
+
+        class OracleEntityCloner : ReflectionEntityCloner
+        {
+            private NorthwindOracleContext context;
+
+            public OracleEntityCloner(NorthwindOracleContext context)
+            {
+                this.context = context;
+            }
+
+            public override object Context { get { return this.context; } }
+
+            public override void AddEntity(object entity, string entityTypeName)
+            {
+                this.context.AddObject(entityTypeName, entity);
+            }
+
+            public override void UpdateEntity(object entity)
+            {
+            }
+
+            public override void SaveChanges()
+            {
+                this.context.SaveChanges();
+            }
         }
     }
 }
