@@ -15,11 +15,11 @@ namespace Northwind.EntityFramework.CodeFirst.Entities
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return Equals(this.Address, other.Address) 
-                && Equals(this.City, other.City) 
-                && Equals(this.Region, other.Region)
-                && Equals(this.PostalCode, other.PostalCode)
-                && Equals(this.Country, other.Country);
+            return Equals(this.Address, other.Address)
+                   && Equals(this.City, other.City)
+                   && Equals(this.Region, other.Region)
+                   && Equals(this.PostalCode, other.PostalCode)
+                   && Equals(this.Country, other.Country);
         }
 
         public override bool Equals(object obj)
@@ -34,11 +34,11 @@ namespace Northwind.EntityFramework.CodeFirst.Entities
         {
             unchecked
             {
-                int result = this.Address.GetHashCode();
-                result ^= this.City.GetHashCode();
-                result ^= this.Region.GetHashCode();
-                result ^= this.PostalCode.GetHashCode();
-                result ^= this.Country.GetHashCode();
+                int result = string.IsNullOrEmpty(this.Address) ? 0 : this.Address.GetHashCode();
+                result ^= string.IsNullOrEmpty(this.City) ? 0 : this.City.GetHashCode();
+                result ^= string.IsNullOrEmpty(this.Region) ? 0 : this.Region.GetHashCode();
+                result ^= string.IsNullOrEmpty(this.PostalCode) ? 0 : this.PostalCode.GetHashCode();
+                result ^= string.IsNullOrEmpty(this.Country) ? 0 : this.Country.GetHashCode();
                 return result;
             }
         }

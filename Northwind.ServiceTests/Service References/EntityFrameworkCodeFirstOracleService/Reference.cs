@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 10.09.2011 13:30:29
+// Generation date: 11.09.2011 11:09:43
 namespace Northwind.ServiceTests.EntityFrameworkCodeFirstOracleService
 {
     

@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 10.09.2011 13:05:56
+// Generation date: 11.09.2011 11:09:39
 namespace Northwind.ServiceTests.EntityFrameworkCodeFirstMsSqlService
 {
     

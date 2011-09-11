@@ -6,9 +6,9 @@
           <PropertyRef Name="CategoryID" />
         </Key>
         <Property Name="CategoryID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="CategoryName" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Picture" Type="Edm.Binary" Nullable="true" FixedLength="false" />
+        <Property Name="CategoryName" Type="Edm.String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Picture" Type="Edm.Binary" Nullable="true" MaxLength="Max" FixedLength="false" />
         <NavigationProperty Name="Products" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Products_Category" FromRole="Products_Category_Target" ToRole="Products_Category_Source" />
       </EntityType>
       <EntityType Name="Products">
@@ -16,10 +16,10 @@
           <PropertyRef Name="ProductID" />
         </Key>
         <Property Name="ProductID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="ProductName" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="ProductName" Type="Edm.String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         <Property Name="SupplierID" Type="Edm.Int32" Nullable="false" />
         <Property Name="CategoryID" Type="Edm.Int32" Nullable="false" />
-        <Property Name="QuantityPerUnit" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="QuantityPerUnit" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <Property Name="UnitPrice" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="2" />
         <Property Name="UnitsInStock" Type="Edm.Int16" Nullable="false" />
         <Property Name="UnitsOnOrder" Type="Edm.Int16" Nullable="false" />
@@ -34,21 +34,21 @@
           <PropertyRef Name="SupplierID" />
         </Key>
         <Property Name="SupplierID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="ContactName" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="ContactTitle" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="ContactName" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="ContactTitle" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <Property Name="AddressDetails" Type="Northwind.EntityFramework.CodeFirst.MsSql.AddressDetails" Nullable="false" />
-        <Property Name="Phone" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Fax" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="HomePage" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="Phone" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Fax" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="HomePage" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <NavigationProperty Name="Products" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Suppliers_Products" FromRole="Suppliers_Products_Source" ToRole="Suppliers_Products_Target" />
       </EntityType>
       <ComplexType Name="AddressDetails">
-        <Property Name="Address" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="City" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Region" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="PostalCode" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="Address" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="City" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Region" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="PostalCode" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
       </ComplexType>
       <EntityType Name="OrderDetails">
         <Key>
@@ -75,12 +75,12 @@
         <Property Name="ShippedDate" Type="Edm.DateTime" Nullable="true" />
         <Property Name="ShipVia" Type="Edm.Int32" Nullable="false" />
         <Property Name="Freight" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="2" />
-        <Property Name="ShipName" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="ShipAddress" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="ShipCity" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="ShipRegion" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="ShipPostalCode" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="ShipCountry" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="ShipName" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="ShipAddress" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="ShipCity" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="ShipRegion" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="ShipPostalCode" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="ShipCountry" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <NavigationProperty Name="OrderDetails" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Orders_OrderDetails" FromRole="Orders_OrderDetails_Source" ToRole="Orders_OrderDetails_Target" />
         <NavigationProperty Name="Customer" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Customers_Orders" FromRole="Customers_Orders_Target" ToRole="Customers_Orders_Source" />
         <NavigationProperty Name="Employee" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Employees_Orders" FromRole="Employees_Orders_Target" ToRole="Employees_Orders_Source" />
@@ -91,12 +91,12 @@
           <PropertyRef Name="CustomerID" />
         </Key>
         <Property Name="CustomerID" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="ContactName" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="ContactTitle" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="ContactName" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="ContactTitle" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <Property Name="AddressDetails" Type="Northwind.EntityFramework.CodeFirst.MsSql.AddressDetails" Nullable="false" />
-        <Property Name="Phone" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Fax" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="Phone" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Fax" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <NavigationProperty Name="Orders" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Customers_Orders" FromRole="Customers_Orders_Source" ToRole="Customers_Orders_Target" />
         <NavigationProperty Name="CustomerDemographics" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Customers_CustomerDemographics" FromRole="Customers_CustomerDemographics_Source" ToRole="Customers_CustomerDemographics_Target" />
       </EntityType>
@@ -105,7 +105,7 @@
           <PropertyRef Name="CustomerTypeID" />
         </Key>
         <Property Name="CustomerTypeID" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="CustomerDesc" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="CustomerDesc" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <NavigationProperty Name="Customers" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Customers_CustomerDemographics" FromRole="Customers_CustomerDemographics_Target" ToRole="Customers_CustomerDemographics_Source" />
       </EntityType>
       <EntityType Name="Employees">
@@ -113,19 +113,19 @@
           <PropertyRef Name="EmployeeID" />
         </Key>
         <Property Name="EmployeeID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Title" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="TitleOfCourtesy" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Title" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="TitleOfCourtesy" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <Property Name="BirthDate" Type="Edm.DateTime" Nullable="true" />
         <Property Name="HireDate" Type="Edm.DateTime" Nullable="true" />
         <Property Name="AddressDetails" Type="Northwind.EntityFramework.CodeFirst.MsSql.AddressDetails" Nullable="false" />
-        <Property Name="HomePhone" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Extension" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Photo" Type="Edm.Binary" Nullable="true" FixedLength="false" />
-        <Property Name="Notes" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="HomePhone" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Extension" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Photo" Type="Edm.Binary" Nullable="true" MaxLength="Max" FixedLength="false" />
+        <Property Name="Notes" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <Property Name="ReportsTo" Type="Edm.Int32" Nullable="true" />
-        <Property Name="PhotoPath" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="PhotoPath" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <NavigationProperty Name="Superior" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Employees_Superior" FromRole="Employees_Superior_Source" ToRole="Employees_Superior_Target" />
         <NavigationProperty Name="Subordinates" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Employees_Superior" FromRole="Employees_Superior_Target" ToRole="Employees_Superior_Source" />
         <NavigationProperty Name="Orders" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Employees_Orders" FromRole="Employees_Orders_Source" ToRole="Employees_Orders_Target" />
@@ -136,7 +136,7 @@
           <PropertyRef Name="TerritoryID" />
         </Key>
         <Property Name="TerritoryID" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="TerritoryDescription" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="TerritoryDescription" Type="Edm.String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         <Property Name="RegionID" Type="Edm.Int32" Nullable="false" />
         <NavigationProperty Name="Employees" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Employees_Territories" FromRole="Employees_Territories_Target" ToRole="Employees_Territories_Source" />
         <NavigationProperty Name="Region" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Regions_Territories" FromRole="Regions_Territories_Target" ToRole="Regions_Territories_Source" />
@@ -146,7 +146,7 @@
           <PropertyRef Name="RegionID" />
         </Key>
         <Property Name="RegionID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="RegionDescription" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="RegionDescription" Type="Edm.String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         <NavigationProperty Name="Territories" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Regions_Territories" FromRole="Regions_Territories_Source" ToRole="Regions_Territories_Target" />
       </EntityType>
       <EntityType Name="Shippers">
@@ -154,8 +154,8 @@
           <PropertyRef Name="ShipperID" />
         </Key>
         <Property Name="ShipperID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-        <Property Name="Phone" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        <Property Name="Phone" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <NavigationProperty Name="Orders" Relationship="Northwind.EntityFramework.CodeFirst.MsSql.Shippers_Orders" FromRole="Shippers_Orders_Source" ToRole="Shippers_Orders_Target" />
       </EntityType>
       <EntityType Name="EdmMetadata">
@@ -163,7 +163,7 @@
           <PropertyRef Name="Id" />
         </Key>
         <Property Name="Id" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="ModelHash" Type="Edm.String" Nullable="true" MaxLength="128" Unicode="true" FixedLength="false" />
+        <Property Name="ModelHash" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
       </EntityType>
       <Association Name="Products_Category">
         <End Role="Products_Category_Source" Type="Northwind.EntityFramework.CodeFirst.MsSql.Products" Multiplicity="*" />
