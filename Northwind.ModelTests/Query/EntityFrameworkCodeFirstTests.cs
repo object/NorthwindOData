@@ -17,7 +17,6 @@ namespace Northwind.ModelTests.Query
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            HibernatingRhinos.Profiler.Appender.EntityFramework.EntityFrameworkProfiler.Initialize();
         }
 
         public override IQueryable<Categories> GetCategories()
