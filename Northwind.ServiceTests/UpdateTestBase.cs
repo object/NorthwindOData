@@ -47,38 +47,38 @@ namespace Northwind.ServiceTests
             ClearTestData();
         }
 
-        //[Test]
-        //public void should_have_nonnull_context()
-        //{
-        //    Assert.IsNotNull(context);
-        //}
+        [Test]
+        public void should_have_nonnull_context()
+        {
+            Assert.IsNotNull(context);
+        }
 
-        //[Test]
-        //public void should_create_category()
-        //{
-        //    var categoryName = CreateCategory();
-        //    var category = queryTestBase.GetCategory(categoryName);
-        //    Assert.IsNotNull(category);
-        //}
+        [Test]
+        public void should_create_category()
+        {
+            var categoryName = CreateCategory();
+            var category = queryTestBase.GetCategory(categoryName);
+            Assert.IsNotNull(category);
+        }
 
-        //[Test]
-        //public void should_update_category()
-        //{
-        //    var categoryName = CreateCategory();
-        //    var category = queryTestBase.GetCategory(categoryName);
-        //    var newCategoryName = UpdateCategory(category);
-        //    category = queryTestBase.GetCategory(newCategoryName);
-        //    Assert.IsNotNull(category);
-        //}
+        [Test]
+        public void should_update_category()
+        {
+            var categoryName = CreateCategory();
+            var category = queryTestBase.GetCategory(categoryName);
+            var newCategoryName = UpdateCategory(category);
+            category = queryTestBase.GetCategory(newCategoryName);
+            Assert.IsNotNull(category);
+        }
 
-        //[Test]
-        //public void should_delete_category()
-        //{
-        //    var categoryName = CreateCategory();
-        //    var category = queryTestBase.GetCategory(categoryName);
-        //    DeleteCategory(category);
-        //    Assert.Throws<InvalidOperationException>(() => queryTestBase.GetCategory(categoryName));
-        //}
+        [Test]
+        public void should_delete_category()
+        {
+            var categoryName = CreateCategory();
+            var category = queryTestBase.GetCategory(categoryName);
+            DeleteCategory(category);
+            Assert.Throws<InvalidOperationException>(() => queryTestBase.GetCategory(categoryName));
+        }
 
         [Test]
         public void should_attach_product_to_category()
@@ -92,16 +92,16 @@ namespace Northwind.ServiceTests
             Assert.AreEqual(1, products.Count());
         }
 
-        //[Test]
-        //public void should_set_category_to_product()
-        //{
-        //    var categoryName = CreateCategory();
-        //    var category = queryTestBase.GetCategory(categoryName);
-        //    var productName = CreateProduct();
-        //    var product = queryTestBase.GetProduct(productName);
-        //    AssignCategoryToProduct(product, category);
-        //    category = queryTestBase.GetProductCategory(product);
-        //    Assert.IsNotNull(category);
-        //}
+        [Test]
+        public void should_set_category_to_product()
+        {
+            var categoryName = CreateCategory();
+            var category = queryTestBase.GetCategory(categoryName);
+            var productName = CreateProduct();
+            var product = queryTestBase.GetProduct(productName);
+            AssignCategoryToProduct(product, category);
+            category = queryTestBase.GetProductCategory(product);
+            Assert.IsNotNull(category);
+        }
     }
 }

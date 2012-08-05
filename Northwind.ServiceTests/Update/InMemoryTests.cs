@@ -62,7 +62,9 @@ namespace Northwind.ServiceTests.Update
             var product = new Products()
             {
                 ProductID = nextRandom,
-                ProductName = "Test_" + nextRandom.ToString()
+                ProductName = "Test_" + nextRandom.ToString(),
+                CategoryID = 1,
+                SupplierID = 1,
             };
             this.context.AddToProducts(product);
             this.context.SaveChanges();
