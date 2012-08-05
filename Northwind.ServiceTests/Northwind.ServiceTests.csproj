@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatchTestBase.cs" />
+    <Compile Include="Batch\EntityFrameworkCodeFirstMsSqlTests.cs" />
     <Compile Include="QueryTestBase.cs" />
     <Compile Include="Query\EntityFrameworkCodeFirstOracleTests.cs" />
     <Compile Include="Query\EntityFrameworkCodeFirstMsSqlTests.cs" />
